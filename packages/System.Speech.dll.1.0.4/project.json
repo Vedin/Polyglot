@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+ //   "MailKit":"1.10.0"
+    "System.Speech.dll":"1.0.3"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.3"
+        }
+      },
+      "imports": "dnxcore50"
+    }
+  }
+}
