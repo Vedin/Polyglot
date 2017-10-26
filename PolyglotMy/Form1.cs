@@ -109,7 +109,9 @@ namespace PolyglotMy
 
         private void зберегтиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string textAll = richTextBox1.Text + "###" + richTextBoxWordTranslation.Text + "###" + richTextBoxOriginal.Text;
+           //Будет необходимо вызвать метод save но в качестве параметра передавать путь к файлу 
+            //изменть єто нужно будет и в Settigns.cs перезгрузить метод
+            /*string textAll = richTextBox1.Text + "###" + richTextBoxWordTranslation.Text + "###" + richTextBoxOriginal.Text;
             SaveFileDialog sf = new SaveFileDialog();
             Stream mSt;
             sf.Filter = "Polyglot (*.pol)|*.pol|All files (*.*)|*.*";
@@ -117,7 +119,7 @@ namespace PolyglotMy
             {
                 using (StreamWriter sw = new StreamWriter(sf.FileName))
                     sw.WriteLine(textAll);
-            } 
+            } */
         }
 
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,6 +150,13 @@ namespace PolyglotMy
                 ss.Pause();
                 ssO.Pause();
             }
+        }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSettings Fset = new FormSettings(this);
+            Fset.Show();
+            Hide();
         }
     }
 }
