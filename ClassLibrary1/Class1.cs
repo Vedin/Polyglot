@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PolyglotMy
+namespace ClassLibrary1
 {
-    class Globals
+    public class Class1
     {
-        public static string SettingsFile = "settings.xml";
     }
 }

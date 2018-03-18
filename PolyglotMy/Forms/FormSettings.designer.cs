@@ -33,32 +33,40 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonAplly = new System.Windows.Forms.Button();
             this.txtBox = new System.Windows.Forms.RichTextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gBMenuSettings = new System.Windows.Forms.GroupBox();
+            this.MenuButtonEqulizer = new System.Windows.Forms.Button();
+            this.MenuButtonText = new System.Windows.Forms.Button();
+            this.gBText = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.gBButtons = new System.Windows.Forms.GroupBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.gBTextColour = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.rbtn2 = new System.Windows.Forms.RadioButton();
             this.rbtn1 = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gBTextFont = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.gBEqulizer = new System.Windows.Forms.GroupBox();
+            this.SliderRight = new System.Windows.Forms.TrackBar();
+            this.SliderMid = new System.Windows.Forms.TrackBar();
+            this.SliderLeft = new System.Windows.Forms.TrackBar();
+            this.gBMenuSettings.SuspendLayout();
+            this.gBText.SuspendLayout();
+            this.gBButtons.SuspendLayout();
+            this.gBTextColour.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.gBTextFont.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.gBEqulizer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderMid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderLeft)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCancel
@@ -99,43 +107,46 @@
             this.txtBox.TabIndex = 3;
             this.txtBox.Text = "";
             // 
-            // groupBox2
+            // gBMenuSettings
             // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Location = new System.Drawing.Point(1, 35);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(139, 425);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
+            this.gBMenuSettings.Controls.Add(this.MenuButtonEqulizer);
+            this.gBMenuSettings.Controls.Add(this.MenuButtonText);
+            this.gBMenuSettings.Location = new System.Drawing.Point(1, 35);
+            this.gBMenuSettings.Name = "gBMenuSettings";
+            this.gBMenuSettings.Size = new System.Drawing.Size(139, 425);
+            this.gBMenuSettings.TabIndex = 5;
+            this.gBMenuSettings.TabStop = false;
             // 
-            // button4
+            // MenuButtonEqulizer
             // 
-            this.button4.Location = new System.Drawing.Point(6, 70);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(127, 45);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Equalizer";
-            this.button4.UseVisualStyleBackColor = true;
-
+            this.MenuButtonEqulizer.Location = new System.Drawing.Point(6, 70);
+            this.MenuButtonEqulizer.Name = "MenuButtonEqulizer";
+            this.MenuButtonEqulizer.Size = new System.Drawing.Size(127, 45);
+            this.MenuButtonEqulizer.TabIndex = 1;
+            this.MenuButtonEqulizer.Text = "Equalizer";
+            this.MenuButtonEqulizer.UseVisualStyleBackColor = true;
+            this.MenuButtonEqulizer.Visible = false;
+            this.MenuButtonEqulizer.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // MenuButtonText
             // 
-            this.button3.Location = new System.Drawing.Point(6, 19);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(127, 45);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Text";
-            this.button3.UseVisualStyleBackColor = true;
+            this.MenuButtonText.Location = new System.Drawing.Point(6, 19);
+            this.MenuButtonText.Name = "MenuButtonText";
+            this.MenuButtonText.Size = new System.Drawing.Size(127, 45);
+            this.MenuButtonText.TabIndex = 0;
+            this.MenuButtonText.Text = "Text";
+            this.MenuButtonText.UseVisualStyleBackColor = true;
+            this.MenuButtonText.Click += new System.EventHandler(this.button3_Click);
             // 
-            // groupBox3
+            // gBText
             // 
-            this.groupBox3.Controls.Add(this.txtBox);
-            this.groupBox3.Location = new System.Drawing.Point(146, 73);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(548, 237);
-            this.groupBox3.TabIndex = 6;
-            this.groupBox3.TabStop = false;
+            this.gBText.Controls.Add(this.txtBox);
+            this.gBText.Location = new System.Drawing.Point(146, 73);
+            this.gBText.Name = "gBText";
+            this.gBText.Size = new System.Drawing.Size(548, 237);
+            this.gBText.TabIndex = 6;
+            this.gBText.TabStop = false;
+            this.gBText.Text = "Text";
             // 
             // groupBox4
             // 
@@ -145,27 +156,28 @@
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             // 
-            // groupBox7
+            // gBButtons
             // 
-            this.groupBox7.Controls.Add(this.buttonOK);
-            this.groupBox7.Controls.Add(this.buttonAplly);
-            this.groupBox7.Controls.Add(this.buttonCancel);
-            this.groupBox7.Location = new System.Drawing.Point(148, 420);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(548, 40);
-            this.groupBox7.TabIndex = 10;
-            this.groupBox7.TabStop = false;
+            this.gBButtons.Controls.Add(this.buttonOK);
+            this.gBButtons.Controls.Add(this.buttonAplly);
+            this.gBButtons.Controls.Add(this.buttonCancel);
+            this.gBButtons.Location = new System.Drawing.Point(148, 420);
+            this.gBButtons.Name = "gBButtons";
+            this.gBButtons.Size = new System.Drawing.Size(548, 40);
+            this.gBButtons.TabIndex = 10;
+            this.gBButtons.TabStop = false;
             // 
-            // groupBox6
+            // gBTextColour
             // 
-            this.groupBox6.Controls.Add(this.button1);
-            this.groupBox6.Controls.Add(this.rbtn2);
-            this.groupBox6.Controls.Add(this.rbtn1);
-            this.groupBox6.Location = new System.Drawing.Point(288, 0);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(260, 98);
-            this.groupBox6.TabIndex = 9;
-            this.groupBox6.TabStop = false;
+            this.gBTextColour.Controls.Add(this.button1);
+            this.gBTextColour.Controls.Add(this.rbtn2);
+            this.gBTextColour.Controls.Add(this.rbtn1);
+            this.gBTextColour.Location = new System.Drawing.Point(288, 0);
+            this.gBTextColour.Name = "gBTextColour";
+            this.gBTextColour.Size = new System.Drawing.Size(260, 98);
+            this.gBTextColour.TabIndex = 9;
+            this.gBTextColour.TabStop = false;
+            this.gBTextColour.Text = "Colour";
             // 
             // button1
             // 
@@ -201,8 +213,8 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.groupBox5);
-            this.groupBox8.Controls.Add(this.groupBox6);
+            this.groupBox8.Controls.Add(this.gBTextFont);
+            this.groupBox8.Controls.Add(this.gBTextColour);
             this.groupBox8.Location = new System.Drawing.Point(146, 316);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(548, 98);
@@ -210,15 +222,16 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "groupBox8";
             // 
-            // groupBox5
+            // gBTextFont
             // 
-            this.groupBox5.Controls.Add(this.button2);
-            this.groupBox5.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBox5.Location = new System.Drawing.Point(0, 0);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(282, 98);
-            this.groupBox5.TabIndex = 8;
-            this.groupBox5.TabStop = false;
+            this.gBTextFont.Controls.Add(this.button2);
+            this.gBTextFont.ForeColor = System.Drawing.Color.Black;
+            this.gBTextFont.Location = new System.Drawing.Point(0, 0);
+            this.gBTextFont.Name = "gBTextFont";
+            this.gBTextFont.Size = new System.Drawing.Size(282, 98);
+            this.gBTextFont.TabIndex = 8;
+            this.gBTextFont.TabStop = false;
+            this.gBTextFont.Text = "Font";
             // 
             // button2
             // 
@@ -256,31 +269,80 @@
             this.downloadSettingsToolStripMenuItem.Text = "Download settings";
             this.downloadSettingsToolStripMenuItem.Click += new System.EventHandler(this.downloadSettingsToolStripMenuItem_Click);
             // 
+            // gBEqulizer
+            // 
+            this.gBEqulizer.Controls.Add(this.SliderRight);
+            this.gBEqulizer.Controls.Add(this.SliderMid);
+            this.gBEqulizer.Controls.Add(this.SliderLeft);
+            this.gBEqulizer.Location = new System.Drawing.Point(146, 73);
+            this.gBEqulizer.Name = "gBEqulizer";
+            this.gBEqulizer.Size = new System.Drawing.Size(548, 237);
+            this.gBEqulizer.TabIndex = 2;
+            this.gBEqulizer.TabStop = false;
+            this.gBEqulizer.Text = "Equalizer";
+            this.gBEqulizer.Visible = false;
+            // 
+            // SliderRight
+            // 
+            this.SliderRight.Location = new System.Drawing.Point(338, 55);
+            this.SliderRight.Name = "SliderRight";
+            this.SliderRight.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.SliderRight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SliderRight.Size = new System.Drawing.Size(45, 135);
+            this.SliderRight.TabIndex = 2;
+            this.SliderRight.TickStyle = System.Windows.Forms.TickStyle.Both;
+            // 
+            // SliderMid
+            // 
+            this.SliderMid.Location = new System.Drawing.Point(228, 55);
+            this.SliderMid.Name = "SliderMid";
+            this.SliderMid.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.SliderMid.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SliderMid.Size = new System.Drawing.Size(45, 135);
+            this.SliderMid.TabIndex = 1;
+            this.SliderMid.TickStyle = System.Windows.Forms.TickStyle.Both;
+            // 
+            // SliderLeft
+            // 
+            this.SliderLeft.Location = new System.Drawing.Point(118, 55);
+            this.SliderLeft.Name = "SliderLeft";
+            this.SliderLeft.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.SliderLeft.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SliderLeft.Size = new System.Drawing.Size(45, 135);
+            this.SliderLeft.TabIndex = 0;
+            this.SliderLeft.TickStyle = System.Windows.Forms.TickStyle.Both;
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 466);
+            this.Controls.Add(this.gBEqulizer);
             this.Controls.Add(this.groupBox8);
-            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.gBButtons);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gBText);
+            this.Controls.Add(this.gBMenuSettings);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormSettings";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.gBMenuSettings.ResumeLayout(false);
+            this.gBText.ResumeLayout(false);
+            this.gBButtons.ResumeLayout(false);
+            this.gBTextColour.ResumeLayout(false);
+            this.gBTextColour.PerformLayout();
             this.groupBox8.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
+            this.gBTextFont.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.gBEqulizer.ResumeLayout(false);
+            this.gBEqulizer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderMid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SliderLeft)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,26 +354,29 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonAplly;
         private System.Windows.Forms.RichTextBox txtBox;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gBMenuSettings;
+        private System.Windows.Forms.GroupBox gBText;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox gBButtons;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox gBTextColour;
         private System.Windows.Forms.RadioButton rbtn1;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox gBTextFont;
         private System.Windows.Forms.RadioButton rbtn2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.FontDialog fontDialog1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button MenuButtonEqulizer;
+        private System.Windows.Forms.Button MenuButtonText;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem saveSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downloadSettingsToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-
+        private System.Windows.Forms.GroupBox gBEqulizer;
+        private System.Windows.Forms.TrackBar SliderRight;
+        private System.Windows.Forms.TrackBar SliderMid;
+        private System.Windows.Forms.TrackBar SliderLeft;
     }
 }
 
