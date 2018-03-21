@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Windows.Forms;
-//using Microsoft.Speech.Synthesis;
 using System.Speech.Synthesis;
-using System.Speech.AudioFormat;
-//using System.Speech.Synthesis;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -203,7 +195,7 @@ namespace PolyglotMy
                     setStopPauseEnabled();
 
                     Reader = new SpeechSynthesizer();
-                    Reader.SelectVoice("Microsoft Anna");
+                    Reader.SelectVoice("Microsoft Server Speech Text to Speech Voice (en-AU, Hayley)");
 
                     Reader.SpeakAsync(richTextBoxOriginal.Text);
                     buttonPlay.Enabled = false;
