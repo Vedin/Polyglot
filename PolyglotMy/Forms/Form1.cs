@@ -253,17 +253,7 @@ namespace PolyglotMy
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
-            try
-            {
-                buttonPause.Enabled = false;
-                buttonStop.Enabled = false;
-                Reader.Dispose();
-                buttonPlay.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            setStop();
         }
 
         #endregion
@@ -273,16 +263,41 @@ namespace PolyglotMy
         //запуск формы для настроек текста 
         private void тектToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSettingsText Fset = new FormSettingsText(this);
-            Fset.Show();
-            this.Hide();
+            //Reader.Dispose();
+            try
+            {
+                buttonPause.Enabled = false;
+                buttonStop.Enabled = false;                
+                buttonPlay.Enabled = true;
+                Reader.Dispose();
+                FormSettingsText Fset = new FormSettingsText(this);
+                Fset.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         //запуск формы для настроек эквалайзера
         private void еквалайзерToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSettingsEqualizer Fset = new FormSettingsEqualizer(this);
-            Fset.Show();
-            this.Hide();
+            //Reader.Dispose();
+            try
+            {
+                buttonPause.Enabled = false;
+                buttonStop.Enabled = false;
+                buttonPlay.Enabled = true;
+                Reader.Dispose();
+                FormSettingsEqualizer Fset = new FormSettingsEqualizer(this);
+                Fset.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
@@ -327,6 +342,20 @@ namespace PolyglotMy
 
         }
 
+        private void setStop()
+        {
+            try
+            {
+                buttonPause.Enabled = false;
+                buttonStop.Enabled = false;
+                Reader.Dispose();
+                buttonPlay.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         #endregion
 
 

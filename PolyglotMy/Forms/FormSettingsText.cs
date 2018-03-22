@@ -104,12 +104,6 @@ namespace PolyglotMy
             }
         }
 
-        private void FormSettingsText_Load(object sender, EventArgs e)
-        {
-            Console.WriteLine();
-            Console.ReadKey();
-        }
-
         private void FormSettingsText_FormClosing(object sender, FormClosingEventArgs e)
         {
             formbefore.Show();

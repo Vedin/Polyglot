@@ -186,7 +186,6 @@
             this.Name = "FormSettingsText";
             this.Text = "SettingsText";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSettingsText_FormClosing);
-            this.Load += new System.EventHandler(this.FormSettingsText_Load);
             this.gBText.ResumeLayout(false);
             this.gBTextFont.ResumeLayout(false);
             this.gBTextColour.ResumeLayout(false);
