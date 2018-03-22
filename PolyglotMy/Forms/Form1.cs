@@ -29,19 +29,10 @@ namespace PolyglotMy
 
         #endregion
 
-        #region Const
-
-        const string ERR = "Error";
-        const string INF = "Information";
-
-        #endregion
+        
 
 
-        public class Voice
-        {
-            public string Name { get; set; }
-            public InstalledVoice InstalledVoice { get; set; }
-        }
+       
         public Form1()
         {
             InitializeComponent();
@@ -203,12 +194,12 @@ namespace PolyglotMy
                 }
                 else
                 {
-                    MessageBox.Show("Type the text that needs to be told", INF, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Type the text that needs to be told", Globals.INF, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -232,7 +223,7 @@ namespace PolyglotMy
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             #region Old Code
@@ -276,7 +267,7 @@ namespace PolyglotMy
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -296,7 +287,7 @@ namespace PolyglotMy
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -333,7 +324,7 @@ namespace PolyglotMy
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -353,7 +344,7 @@ namespace PolyglotMy
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion

@@ -5,6 +5,7 @@ namespace PolyglotMy
 {
     public class SettingsEqualizer
     {
+        public string VoiceName { get; set; }
         public int SliderLeft { get; set; }
         public int SliderRight { get; set; }
         public int SliderMid { get; set; }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
+using System.Linq;
 
 namespace PolyglotMy
 {
@@ -9,11 +11,17 @@ namespace PolyglotMy
     {
         Form formbefore;
         SettingsEqualizer _settingsequalizer =  null;
+
+        private List<Voice> Voices { get; set; }
+        private SpeechSynthesizer Reader = new SpeechSynthesizer();
+
+        #region Form Functions
         public FormSettingsEqualizer()
         {
             InitializeComponent();
             _initControlls();
         }
+
         public FormSettingsEqualizer(Form formbefore)
         {
             InitializeComponent();
@@ -21,19 +29,21 @@ namespace PolyglotMy
             this.formbefore = formbefore;
         }
 
+        private void FormSettingsEqualizer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (formbefore != null) formbefore.Show();
+        }
+
+        #endregion
+
+        #region Buttons
+
         private void buttonOK_Click(object sender, EventArgs e)
         {
             saved_inf();
             this.Close();
         }
-        private void saved_inf()
-        {     
-            _settingsequalizer.SliderLeft = SliderLeft.Value;
-            _settingsequalizer.SliderMid = SliderMid.Value;
-            _settingsequalizer.SliderRight = SliderRight.Value;
-            _settingsequalizer.Save();
-        }
-
+        
         private void buttonAplly_Click(object sender, EventArgs e)
         {
             saved_inf();
@@ -44,9 +54,38 @@ namespace PolyglotMy
             _initControlls();
         }
 
+        #endregion
+
+        #region InitControls
+
         private void _initControlls()
         {
             _settingsequalizer = SettingsEqualizer.GetSettings();
+
+            GetInstalVoicesToComboVoices();
+
+            initionSliders();
+            initionSpeed();
+            initionVolume();       
+        }
+        private void GetInstalVoicesToComboVoices()
+        {
+            try
+            {
+                Voices = new List<Voice>();
+                Reader.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
+                comboVoices.DataSource = Voices;
+                comboVoices.ValueMember = "InstalledVoice";
+                comboVoices.DisplayMember = "Name";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void initionSliders()
+        {
             //Equlizer
             SliderLeft.Maximum = Globals.EqulizerSliderMaxValue;
             SliderRight.Maximum = Globals.EqulizerSliderMaxValue;
@@ -78,6 +117,11 @@ namespace PolyglotMy
             {
                 SliderMid.Value = SliderMid.Minimum;
             }
+            
+        }
+
+        private void initionVolume()
+        {
             //Volume
             trackBarVolume.Maximum = Globals.EqulizerVolumeMaxValue;
             trackBarVolume.Minimum = Globals.EqulizerVolumeMinValue;
@@ -89,6 +133,10 @@ namespace PolyglotMy
             {
                 trackBarVolume.Value = trackBarVolume.Minimum;
             }
+        }
+
+        private void initionSpeed()
+        {
             //Speed
             trackBarSpeed.Maximum = Globals.EqulizerSpeedMaxValue;
             trackBarSpeed.Minimum = Globals.EqulizerSpeedMinValue;
@@ -100,12 +148,36 @@ namespace PolyglotMy
             {
                 trackBarSpeed.Value = trackBarSpeed.Minimum;
             }
-
         }
 
-        private void FormSettingsEqualizer_FormClosing(object sender, FormClosingEventArgs e)
+        private void initionVoice()
         {
-            formbefore.Show();
+            try
+            {
+                //comboVoices.Text = _settingsequalizer.VoiceName;
+                //comboVoices.Text = "Microsoft Server Speech Text to Speech Voice (en-AU, Hayley)";
+
+                comboVoices.SelectedIndex = 2;
+            }
+            catch
+            {
+                
+            }
+            
         }
+        
+        #endregion
+
+        #region Others
+
+        private void saved_inf()
+        {
+            _settingsequalizer.SliderLeft = SliderLeft.Value;
+            _settingsequalizer.SliderMid = SliderMid.Value;
+            _settingsequalizer.SliderRight = SliderRight.Value;
+            _settingsequalizer.Save();
+        }
+
+        #endregion
     }
 }

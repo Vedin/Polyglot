@@ -40,6 +40,7 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonAplly = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.comboVoices = new System.Windows.Forms.ComboBox();
             this.gBEqulizer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SliderRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SliderMid)).BeginInit();
@@ -53,6 +54,7 @@
             // 
             // gBEqulizer
             // 
+            this.gBEqulizer.Controls.Add(this.comboVoices);
             this.gBEqulizer.Controls.Add(this.SliderRight);
             this.gBEqulizer.Controls.Add(this.SliderMid);
             this.gBEqulizer.Controls.Add(this.SliderLeft);
@@ -172,6 +174,15 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // comboVoices
+            // 
+            this.comboVoices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboVoices.FormattingEnabled = true;
+            this.comboVoices.Location = new System.Drawing.Point(6, 19);
+            this.comboVoices.Name = "comboVoices";
+            this.comboVoices.Size = new System.Drawing.Size(536, 21);
+            this.comboVoices.TabIndex = 3;
+            // 
             // FormSettingsEqualizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,5 +225,6 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonAplly;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.ComboBox comboVoices;
     }
 }

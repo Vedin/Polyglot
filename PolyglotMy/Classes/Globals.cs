@@ -8,7 +8,7 @@
         public static string SettingsFileText = "settigsText.xml";
         #endregion
 
-        #region Equlizer Consts
+        #region Equlizer 
         public static int EqulizerSliderMaxValue = 12;
         public static int EqulizerSliderMinValue = -12;
         public static int EqulizerVolumeMaxValue = 12;
@@ -17,8 +17,14 @@
         public static int EqulizerSpeedMinValue = 1;
 
         //Значения по умолчанию
-        public static string SpeechSentizerVoice = "Microsoft Anna";
+        public const string SpeechSentizerVoice = "Microsoft Anna";
         #endregion
 
+        #region Const
+
+        public const string ERR = "Error";
+        public const string INF = "Information";
+
+        #endregion
     }
 }
