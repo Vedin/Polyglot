@@ -27,12 +27,16 @@ namespace PolyglotMy
         private SpeechSynthesizer Reader = new SpeechSynthesizer();//Ридер оригинала
         private object _Lock = new object();
 
+
+        //Settings Members
+        SettingsEqualizer _settingsequalizer = null;
+
         #endregion
 
-        
 
 
-       
+
+
         public Form1()
         {
             InitializeComponent();
@@ -349,6 +353,17 @@ namespace PolyglotMy
         }
         #endregion
 
+        #region LoadSettings
 
+        private void LoadReaderOriginal()
+        {
+            Reader = new SpeechSynthesizer();
+            _settingsequalizer = SettingsEqualizer.GetSettings();
+            //Добавить потом проверку чтобы работало с щшибками
+           //string s = _settingsequalizer.VoiceNameLeft;
+            Reader.SelectVoice(_settingsequalizer.VoiceNameLeft);
+        }
+
+        #endregion
     }
 }

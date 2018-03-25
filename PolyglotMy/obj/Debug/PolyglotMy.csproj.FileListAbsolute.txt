@@ -24,7 +24,6 @@ C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\zSpeec
 C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\zSpeech.pdb
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.csprojResolveAssemblyReference.cache
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.Form1.resources
-C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.FormSettings.resources
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsEqualizer.resources
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsText.resources
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.csproj.GenerateResource.Cache

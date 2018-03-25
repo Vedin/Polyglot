@@ -10,7 +10,7 @@
 
         #region Equlizer 
         public static int EqulizerSliderMaxValue = 12;
-        public static int EqulizerSliderMinValue = -12;
+        public static int EqulizerSliderMinValue = 0;
         public static int EqulizerVolumeMaxValue = 12;
         public static int EqulizerVolumeMinValue = 0;
         public static int EqulizerSpeedMaxValue = 10;

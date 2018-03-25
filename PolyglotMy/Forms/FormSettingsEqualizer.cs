@@ -68,15 +68,16 @@ namespace PolyglotMy
             initionSpeed();
             initionVolume();       
         }
+
         private void GetInstalVoicesToComboVoices()
         {
             try
             {
                 Voices = new List<Voice>();
                 Reader.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
-                comboVoices.DataSource = Voices;
-                comboVoices.ValueMember = "InstalledVoice";
-                comboVoices.DisplayMember = "Name";
+                
+                Globals.EqulizerSliderMinValue = 0;
+                Globals.EqulizerSliderMaxValue = Voices.Count - 1;
             }
             catch (Exception ex)
             {
@@ -95,7 +96,7 @@ namespace PolyglotMy
             SliderMid.Minimum = Globals.EqulizerSliderMinValue;
             try
             {
-                SliderLeft.Value = _settingsequalizer.SliderLeft;
+                SliderLeft.Value =  IndexOfVoiceInVoices( _settingsequalizer.VoiceNameLeft);
             }
             catch
             {
@@ -103,7 +104,7 @@ namespace PolyglotMy
             }
             try
             {
-                SliderRight.Value = _settingsequalizer.SliderRight;
+                SliderRight.Value = IndexOfVoiceInVoices(_settingsequalizer.VoiceNameRight);
             }
             catch
             {
@@ -111,7 +112,7 @@ namespace PolyglotMy
             }
             try
             {
-                SliderMid.Value = _settingsequalizer.SliderMid;
+                SliderMid.Value = IndexOfVoiceInVoices(_settingsequalizer.VoiceNameMid);
             }
             catch
             {
@@ -149,32 +150,34 @@ namespace PolyglotMy
                 trackBarSpeed.Value = trackBarSpeed.Minimum;
             }
         }
+        
 
-        private void initionVoice()
-        {
-            try
-            {
-                //comboVoices.Text = _settingsequalizer.VoiceName;
-                //comboVoices.Text = "Microsoft Server Speech Text to Speech Voice (en-AU, Hayley)";
-
-                comboVoices.SelectedIndex = 2;
-            }
-            catch
-            {
-                
-            }
-            
-        }
+        
         
         #endregion
 
         #region Others
 
+        private int IndexOfVoiceInVoices(string VoiceName)
+        {
+            for(int i = 0; i < Voices.Count;i++)
+            {
+                if (Voices[i].Name == VoiceName) return i;
+            }
+            return -1;
+        }
+
+        private string ValueOfIndexInVoices(int index)
+        {
+            if (index < Voices.Count && index >= 0) return Voices[index].Name;
+            return Voices[0].Name;
+        }
+
         private void saved_inf()
         {
-            _settingsequalizer.SliderLeft = SliderLeft.Value;
-            _settingsequalizer.SliderMid = SliderMid.Value;
-            _settingsequalizer.SliderRight = SliderRight.Value;
+            _settingsequalizer.VoiceNameLeft = ValueOfIndexInVoices(SliderLeft.Value);
+            _settingsequalizer.VoiceNameMid = ValueOfIndexInVoices(SliderMid.Value);
+            _settingsequalizer.VoiceNameRight = ValueOfIndexInVoices(SliderRight.Value);
             _settingsequalizer.Save();
         }
 
