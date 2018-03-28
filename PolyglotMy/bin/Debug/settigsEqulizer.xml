@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <SettingsEqualizer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <VoiceNameLeft>Microsoft Server Speech Text to Speech Voice (ru-RU, Elena)</VoiceNameLeft>
+  <VoiceNameLeft>Microsoft Anna</VoiceNameLeft>
   <VoiceNameRight>Microsoft Anna</VoiceNameRight>
   <VoiceNameMid>Microsoft Server Speech Text to Speech Voice (en-US, Helen)</VoiceNameMid>
   <Volume>0</Volume>

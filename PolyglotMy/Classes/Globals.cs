@@ -24,7 +24,7 @@
 
         public const string ERR = "Error";
         public const string INF = "Information";
-
+        public const string ERRLoadEqulizer = "Not all settings can were load";
         #endregion
     }
 }

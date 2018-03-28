@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxTranslate = new System.Windows.Forms.RichTextBox();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.buttonPause = new System.Windows.Forms.Button();
-            this.richTextBoxWordTranslation = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxTranslateOur = new System.Windows.Forms.RichTextBox();
             this.richTextBoxOriginal = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,16 +43,17 @@
             this.buttonStop = new System.Windows.Forms.Button();
             this.labelOriginal = new System.Windows.Forms.Label();
             this.labelTranslate = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // richTextBoxTranslate
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(32, 74);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(753, 122);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBoxTranslate.Location = new System.Drawing.Point(32, 74);
+            this.richTextBoxTranslate.Name = "richTextBoxTranslate";
+            this.richTextBoxTranslate.Size = new System.Drawing.Size(753, 126);
+            this.richTextBoxTranslate.TabIndex = 0;
+            this.richTextBoxTranslate.Text = "";
             // 
             // buttonPlay
             // 
@@ -75,19 +76,19 @@
             this.buttonPause.UseVisualStyleBackColor = true;
             this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
             // 
-            // richTextBoxWordTranslation
+            // richTextBoxTranslateOur
             // 
-            this.richTextBoxWordTranslation.Location = new System.Drawing.Point(32, 217);
-            this.richTextBoxWordTranslation.Name = "richTextBoxWordTranslation";
-            this.richTextBoxWordTranslation.Size = new System.Drawing.Size(753, 126);
-            this.richTextBoxWordTranslation.TabIndex = 3;
-            this.richTextBoxWordTranslation.Text = "";
+            this.richTextBoxTranslateOur.Location = new System.Drawing.Point(32, 217);
+            this.richTextBoxTranslateOur.Name = "richTextBoxTranslateOur";
+            this.richTextBoxTranslateOur.Size = new System.Drawing.Size(753, 126);
+            this.richTextBoxTranslateOur.TabIndex = 3;
+            this.richTextBoxTranslateOur.Text = "";
             // 
             // richTextBoxOriginal
             // 
             this.richTextBoxOriginal.Location = new System.Drawing.Point(32, 364);
             this.richTextBoxOriginal.Name = "richTextBoxOriginal";
-            this.richTextBoxOriginal.Size = new System.Drawing.Size(753, 108);
+            this.richTextBoxOriginal.Size = new System.Drawing.Size(753, 126);
             this.richTextBoxOriginal.TabIndex = 4;
             this.richTextBoxOriginal.Text = "";
             // 
@@ -177,19 +178,29 @@
             this.labelTranslate.TabIndex = 8;
             this.labelTranslate.Text = "Translate";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(406, 201);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "TranslateOur";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 512);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelTranslate);
             this.Controls.Add(this.labelOriginal);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.richTextBoxOriginal);
-            this.Controls.Add(this.richTextBoxWordTranslation);
+            this.Controls.Add(this.richTextBoxTranslateOur);
             this.Controls.Add(this.buttonPause);
             this.Controls.Add(this.buttonPlay);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextBoxTranslate);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -203,10 +214,10 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxTranslate;
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.Button buttonPause;
-        private System.Windows.Forms.RichTextBox richTextBoxWordTranslation;
+        private System.Windows.Forms.RichTextBox richTextBoxTranslateOur;
         private System.Windows.Forms.RichTextBox richTextBoxOriginal;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
@@ -218,6 +229,7 @@
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Label labelOriginal;
         private System.Windows.Forms.Label labelTranslate;
+        private System.Windows.Forms.Label label1;
     }
 }
 

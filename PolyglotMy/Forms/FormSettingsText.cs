@@ -26,14 +26,12 @@ namespace PolyglotMy
             InitializeComponent();
             _initControlls();
         }
-        private void FormSettingsText_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            formbefore.Show();
-        }
+
+
+
         private void buttonOK_Click(object sender, EventArgs e)//Кнопка окей. Сериализует и закрывает после форму.
         {
             saved_inf();
-            formbefore.Show();
             this.Close();
         }
 
@@ -63,22 +61,38 @@ namespace PolyglotMy
         private void _initControlls()//Загрузка елементов или десирреализация
         {
             _settingstext = SettingsText.GetSettings(); //Десериализация
-            
+            txtBox.SelectAll();
             try
             {
-                txtBox.BackColor = Color.FromArgb(_settingstext.BackColor);
+                txtBox.SelectionBackColor = Color.FromArgb(_settingstext.BackColor);
             }
-            catch { }
+            catch
+            {
+                txtBox.SelectionBackColor = Color.FromArgb(0xFFFFFF);
+            }
             try
             {
-                txtBox.ForeColor = Color.FromArgb(_settingstext.TextColor);
+                txtBox.SelectionColor = Color.FromArgb(_settingstext.TextColor);
             }
-            catch { }          
-            try
+            catch
             {
-                txtBox.Font = _settingstext.TextFont.GetFont();
+                txtBox.SelectionColor = Color.FromArgb(0x000000);
             }
-            catch { }
+            /* try
+             {
+                 txtBox.BackColor = Color.FromArgb(_settingstext.BackColor);
+             }
+             catch { }
+             try
+             {
+                 txtBox.ForeColor = Color.FromArgb(_settingstext.TextColor);
+             }
+             catch { }          
+             try
+             {
+                 txtBox.Font = _settingstext.TextFont.GetFont();
+             }
+             catch { }*/
         }
 
         private void button2_Click(object sender, EventArgs e)//Изменение шрифтов
@@ -93,13 +107,14 @@ namespace PolyglotMy
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
+                txtBox.SelectAll();
                 if (rbtn1.Checked == true)
                 {
-                    txtBox.ForeColor = colorDialog1.Color;
+                    txtBox.SelectionColor = colorDialog1.Color;
                 }
                 else
                 {
-                    txtBox.BackColor = colorDialog1.Color;
+                    txtBox.SelectionBackColor = colorDialog1.Color;
                 }
             }
         }

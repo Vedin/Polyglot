@@ -24,7 +24,10 @@ namespace PolyglotMy
         private SpeechSynthesizer ss = new SpeechSynthesizer();
         int lwst = 0;
 
-        private SpeechSynthesizer Reader = new SpeechSynthesizer();//Ридер оригинала
+        private SpeechSynthesizer ReaderOriginal = new SpeechSynthesizer();//Ридер оригинала
+        private SpeechSynthesizer ReaderTranslate = new SpeechSynthesizer();
+        private SpeechSynthesizer ReaderTranslateOur = new SpeechSynthesizer();
+
         private object _Lock = new object();
 
 
@@ -55,11 +58,11 @@ namespace PolyglotMy
 
             #region Проверка на доступные Голоса
             List<Voice> Voices = new List<Voice>();
-            Reader.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
+            ReaderOriginal.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
 
             foreach (var voice in Voices)
             {
-                richTextBox1.Text += voice.Name + new string(' ', 30)/* + voice.InstalledVoice + new string('-',10) + '\n'*/;
+                richTextBoxTranslate.Text += voice.Name + new string(' ', 30)/* + voice.InstalledVoice + new string('-',10) + '\n'*/;
             }
             #endregion
 
@@ -70,15 +73,15 @@ namespace PolyglotMy
         private void SelColor(int start_pos)
         {
             int j = 0;
-            richTextBox1.SelectionColor = Color.Black;
-            richTextBox1.SelectionStart = start_pos;
-            j = richTextBox1.Text.IndexOf(' ', start_pos);
-            int j1 = richTextBox1.Text.IndexOf('\n', start_pos);
-            if (j1 >= richTextBox1.Text.Length || j1 < 0) j1 = richTextBox1.Text.Length;
-            if (j >= richTextBox1.Text.Length || j < 0) j = richTextBox1.Text.Length;
+            richTextBoxTranslate.SelectionColor = Color.Black;
+            richTextBoxTranslate.SelectionStart = start_pos;
+            j = richTextBoxTranslate.Text.IndexOf(' ', start_pos);
+            int j1 = richTextBoxTranslate.Text.IndexOf('\n', start_pos);
+            if (j1 >= richTextBoxTranslate.Text.Length || j1 < 0) j1 = richTextBoxTranslate.Text.Length;
+            if (j >= richTextBoxTranslate.Text.Length || j < 0) j = richTextBoxTranslate.Text.Length;
             j = Math.Min(j1, j);
-            richTextBox1.SelectionLength = j - start_pos;
-            richTextBox1.SelectionColor = Color.Blue;
+            richTextBoxTranslate.SelectionLength = j - start_pos;
+            richTextBoxTranslate.SelectionColor = Color.Blue;
         }
         private void SetColorO(int start_pos)
         {
@@ -96,17 +99,17 @@ namespace PolyglotMy
         private void SetColorWT(bool article)
         {
             int j = 0;
-            richTextBoxWordTranslation.SelectionColor = Color.Black;
-            richTextBoxWordTranslation.SelectionStart = lwst;
-            j = richTextBoxWordTranslation.Text.IndexOf(' ', lwst);
-            int j1 = richTextBoxWordTranslation.Text.IndexOf('\n', lwst);
+            richTextBoxTranslateOur.SelectionColor = Color.Black;
+            richTextBoxTranslateOur.SelectionStart = lwst;
+            j = richTextBoxTranslateOur.Text.IndexOf(' ', lwst);
+            int j1 = richTextBoxTranslateOur.Text.IndexOf('\n', lwst);
 
-            if (j1 >= richTextBoxWordTranslation.Text.Length || j1 < 0) j1 = richTextBoxWordTranslation.Text.Length;
-            if (j >= richTextBoxWordTranslation.Text.Length || j < 0) j = richTextBoxWordTranslation.Text.Length;
+            if (j1 >= richTextBoxTranslateOur.Text.Length || j1 < 0) j1 = richTextBoxTranslateOur.Text.Length;
+            if (j >= richTextBoxTranslateOur.Text.Length || j < 0) j = richTextBoxTranslateOur.Text.Length;
             j = Math.Min(j1, j);
             //if (article) j= richTextBoxWordTranslation.Text.IndexOf(' ', j + 1);
-            richTextBoxWordTranslation.SelectionLength = j - lwst;
-            richTextBoxWordTranslation.SelectionColor = Color.Blue;
+            richTextBoxTranslateOur.SelectionLength = j - lwst;
+            richTextBoxTranslateOur.SelectionColor = Color.Blue;
             /*richTextBox1.SelectionColor = Color.Blue;
             richTextBox1.SelectionColor = Color.Black;*/
             //ss.Pause();
@@ -153,8 +156,8 @@ namespace PolyglotMy
                 using (StreamReader sw = new StreamReader(of.FileName))
                     textAll = sw.ReadToEnd();
                 string[] t3 = Regex.Split(textAll, @"###");
-                richTextBox1.Text = t3[0];
-                richTextBoxWordTranslation.Text = t3[1];
+                richTextBoxTranslate.Text = t3[0];
+                richTextBoxTranslateOur.Text = t3[1];
                 richTextBoxOriginal.Text = t3[2];
             }
         }
@@ -185,21 +188,25 @@ namespace PolyglotMy
             #endregion
             try
             {
-                if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
+                AllReadersSpeakAsynk();
+                /*if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
                 {
                     setStopPauseEnabled();
 
-                    Reader = new SpeechSynthesizer();
-                    Reader.SelectVoice("Microsoft Server Speech Text to Speech Voice (en-AU, Hayley)");
+                    /* ReaderOriginal = new SpeechSynthesizer();
+                     ReaderOriginal.SelectVoice("Microsoft Server Speech Text to Speech Voice (en-AU, Hayley)");
 
-                    Reader.SpeakAsync(richTextBoxOriginal.Text);
-                    buttonPlay.Enabled = false;
-                    Reader.SpeakCompleted += Reader_SpeakCompleted;                   
+                     ReaderOriginal.SpeakAsync(richTextBoxOriginal.Text);
+                     buttonPlay.Enabled = false;*/
+                   /* AllReadersLoad();
+
+
+                    //ReaderOriginal.SpeakCompleted += Reader_SpeakCompleted;                   
                 }
                 else
                 {
                     MessageBox.Show("Type the text that needs to be told", Globals.INF, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                }*/
             }
             catch (Exception ex)
             {
@@ -214,15 +221,16 @@ namespace PolyglotMy
         {
             try
             {
-                if (Reader.State == SynthesizerState.Speaking)
+                if (ReaderOriginal.State == SynthesizerState.Speaking 
+                    || ReaderTranslate.State == SynthesizerState.Speaking
+                    || ReaderTranslateOur.State == SynthesizerState.Speaking)
                 {
-                    Reader.Pause();
-
+                    AllReadersPause();
                 }
                 else
-                    if (Reader.State == SynthesizerState.Paused)
+                if (ReaderOriginal.State == SynthesizerState.Paused)
                 {
-                    Reader.Resume();
+                    AllReadersResume();
                 }
             }
             catch (Exception ex)
@@ -258,13 +266,9 @@ namespace PolyglotMy
         //запуск формы для настроек текста 
         private void тектToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Reader.Dispose();
             try
             {
-                buttonPause.Enabled = false;
-                buttonStop.Enabled = false;                
-                buttonPlay.Enabled = true;
-                Reader.Dispose();
+                setStop();
                 FormSettingsText Fset = new FormSettingsText(this);
                 Fset.Show();
                 this.Hide();
@@ -278,13 +282,9 @@ namespace PolyglotMy
         //запуск формы для настроек эквалайзера
         private void еквалайзерToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Reader.Dispose();
             try
             {
-                buttonPause.Enabled = false;
-                buttonStop.Enabled = false;
-                buttonPlay.Enabled = true;
-                Reader.Dispose();
+                setStop();
                 FormSettingsEqualizer Fset = new FormSettingsEqualizer(this);
                 Fset.Show();
                 this.Hide();
@@ -302,7 +302,10 @@ namespace PolyglotMy
         //запускаеться при нажатии button Play
         private void setStopPauseEnabled()
         {
-            if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
+           
+            if (!string.IsNullOrEmpty(richTextBoxOriginal.Text)
+                || !string.IsNullOrEmpty(richTextBoxTranslateOur.Text)
+                || !string.IsNullOrEmpty(richTextBoxTranslate.Text))
             {
                 buttonPause.Enabled = true;
                 buttonStop.Enabled = true;
@@ -320,8 +323,8 @@ namespace PolyglotMy
             {
                 buttonPlay.Enabled = true;
                 setStopPauseEnabled();
-                Reader.SpeakCompleted -= Reader_SpeakCompleted;
-                Reader.Dispose();
+                ReaderOriginal.SpeakCompleted -= Reader_SpeakCompleted;
+                AllReadersDispose();
             }
             catch (ObjectDisposedException)
             {
@@ -334,7 +337,6 @@ namespace PolyglotMy
             {
                 
             }
-
         }
 
         private void setStop()
@@ -343,7 +345,7 @@ namespace PolyglotMy
             {
                 buttonPause.Enabled = false;
                 buttonStop.Enabled = false;
-                Reader.Dispose();
+                AllReadersDispose();
                 buttonPlay.Enabled = true;
             }
             catch (Exception ex)
@@ -353,17 +355,94 @@ namespace PolyglotMy
         }
         #endregion
 
-        #region LoadSettings
-
-        private void LoadReaderOriginal()
+        #region Readers
+        /*На данном этапе процедура выбрасывает месенж об ошибке при любом збое и прекращает 
+         * попытку извлечение настроек а все приводит к базовому
+         * Потом нужно добавить продолжение извлечение и вывод об ошибке и месте извлечения 
+         * */
+        private void AllReadersLoad()
         {
-            Reader = new SpeechSynthesizer();
+            ReaderOriginal = new SpeechSynthesizer();
+            ReaderTranslate = new SpeechSynthesizer();
+            ReaderTranslateOur = new SpeechSynthesizer();
             _settingsequalizer = SettingsEqualizer.GetSettings();
-            //Добавить потом проверку чтобы работало с щшибками
-           //string s = _settingsequalizer.VoiceNameLeft;
-            Reader.SelectVoice(_settingsequalizer.VoiceNameLeft);
+
+            try
+            {
+                ReaderOriginal.SelectVoice(_settingsequalizer.VoiceNameLeft);
+                ReaderTranslate.SelectVoice(_settingsequalizer.VoiceNameRight);
+                ReaderTranslateOur.SelectVoice(_settingsequalizer.VoiceNameMid);
+                
+            }
+            catch (Exception ex)
+            {                
+                ReaderOriginal.SelectVoice(Globals.SpeechSentizerVoice);
+                ReaderTranslate.SelectVoice(Globals.SpeechSentizerVoice);
+                ReaderTranslateOur.SelectVoice(Globals.SpeechSentizerVoice);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void AllReadersDispose()
+        {
+            ReaderOriginal.Dispose();
+            ReaderTranslateOur.Dispose();
+            ReaderTranslate.Dispose();
+        }
+
+        private void AllReadersPause()
+        {
+            try
+            {
+                ReaderOriginal.Pause();
+                ReaderTranslateOur.Pause();
+                ReaderTranslate.Pause();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //ReaderOriginal.
+        }
+
+        private void AllReadersResume()
+        {
+            ReaderTranslate.Resume();
+            ReaderTranslateOur.Resume();
+            ReaderOriginal.Resume();
+
+        }
+
+        private void AllReadersSpeakAsynk()
+        {
+            if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
+            {
+                setStopPauseEnabled();
+                AllReadersLoad();
+                ReaderOriginal.SpeakAsync(richTextBoxOriginal.Text);
+                buttonPlay.Enabled = false;
+
+            }
+            /*else
+            {
+                MessageBox.Show("Type the text that needs to be told", Globals.INF, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }*/
+            if (!string.IsNullOrEmpty(richTextBoxTranslate.Text))
+            {
+                setStopPauseEnabled();
+                AllReadersLoad();
+                ReaderTranslate.SpeakAsync(richTextBoxTranslate.Text);
+                buttonPlay.Enabled = false;
+            }
+            if (!string.IsNullOrEmpty(richTextBoxTranslateOur.Text))
+            {
+                setStopPauseEnabled();
+                AllReadersLoad();
+                ReaderTranslateOur.SpeakAsync(richTextBoxTranslateOur.Text);
+                buttonPlay.Enabled = false;
+            }
+        }
         #endregion
     }
 }
