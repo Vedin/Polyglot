@@ -178,6 +178,8 @@ namespace PolyglotMy
             _settingsequalizer.VoiceNameLeft = ValueOfIndexInVoices(SliderLeft.Value);
             _settingsequalizer.VoiceNameMid = ValueOfIndexInVoices(SliderMid.Value);
             _settingsequalizer.VoiceNameRight = ValueOfIndexInVoices(SliderRight.Value);
+            _settingsequalizer.Speed = trackBarSpeed.Value;
+            _settingsequalizer.Volume = trackBarVolume.Value;
             _settingsequalizer.Save();
         }
 

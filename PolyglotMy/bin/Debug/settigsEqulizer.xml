@@ -3,6 +3,6 @@
   <VoiceNameLeft>Microsoft Anna</VoiceNameLeft>
   <VoiceNameRight>Microsoft Anna</VoiceNameRight>
   <VoiceNameMid>Microsoft Server Speech Text to Speech Voice (en-US, Helen)</VoiceNameMid>
-  <Volume>0</Volume>
-  <Speed>0</Speed>
+  <Volume>40</Volume>
+  <Speed>5</Speed>
 </SettingsEqualizer>

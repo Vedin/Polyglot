@@ -11,10 +11,10 @@
         #region Equlizer 
         public static int EqulizerSliderMaxValue = 12;
         public static int EqulizerSliderMinValue = 0;
-        public static int EqulizerVolumeMaxValue = 12;
-        public static int EqulizerVolumeMinValue = 0;
-        public static int EqulizerSpeedMaxValue = 10;
-        public static int EqulizerSpeedMinValue = 1;
+        public const int EqulizerVolumeMaxValue = 100;
+        public const int EqulizerVolumeMinValue = 0;
+        public const int EqulizerSpeedMaxValue = 10;
+        public const int EqulizerSpeedMinValue = -10;
 
         //Значения по умолчанию
         public const string SpeechSentizerVoice = "Microsoft Anna";

@@ -394,55 +394,98 @@ namespace PolyglotMy
         {
             try
             {
-                ReaderOriginal.Pause();
-                ReaderTranslateOur.Pause();
-                ReaderTranslate.Pause();
+                if (ReaderOriginal.State == SynthesizerState.Speaking)
+                {
+                    ReaderOriginal.Pause();
+                }
+                if (ReaderTranslateOur.State == SynthesizerState.Speaking)
+                {
+                    ReaderTranslateOur.Pause();
+                }
+                if (ReaderTranslate.State == SynthesizerState.Speaking)
+                {
+                    ReaderTranslate.Pause();
+                }                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            //ReaderOriginal.
         }
 
         private void AllReadersResume()
         {
-            ReaderTranslate.Resume();
-            ReaderTranslateOur.Resume();
-            ReaderOriginal.Resume();
-
+            if (ReaderOriginal.State == SynthesizerState.Paused)
+            {
+                ReaderOriginal.Resume();
+            }
+            if (ReaderTranslateOur.State == SynthesizerState.Paused)
+            {
+                ReaderTranslateOur.Resume();
+            }
+            if (ReaderTranslate.State == SynthesizerState.Paused)
+            {
+                ReaderTranslate.Resume();
+            }
         }
 
         private void AllReadersSpeakAsynk()
         {
+            AllReadersLoad();
+                setStopPauseEnabled();
             if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
-            {
-                setStopPauseEnabled();
-                AllReadersLoad();
+            {  
+                
                 ReaderOriginal.SpeakAsync(richTextBoxOriginal.Text);
-                buttonPlay.Enabled = false;
+                ReaderOriginal.Pause();
+            }
 
-            }
-            /*else
-            {
-                MessageBox.Show("Type the text that needs to be told", Globals.INF, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }*/
             if (!string.IsNullOrEmpty(richTextBoxTranslate.Text))
-            {
-                setStopPauseEnabled();
-                AllReadersLoad();
+            {  
+                
                 ReaderTranslate.SpeakAsync(richTextBoxTranslate.Text);
-                buttonPlay.Enabled = false;
+                ReaderTranslate.Pause();
             }
+
             if (!string.IsNullOrEmpty(richTextBoxTranslateOur.Text))
-            {
-                setStopPauseEnabled();
-                AllReadersLoad();
+            { 
+                
                 ReaderTranslateOur.SpeakAsync(richTextBoxTranslateOur.Text);
-                buttonPlay.Enabled = false;
+                ReaderTranslateOur.Pause();
             }
+            AllReadersLoadSettings();
+            AllReadersResume();
+            buttonPlay.Enabled = false;
         }
+
+        private void AllReadersLoadSettings()
+        {
+            AllReadersLoadVolume();
+            AllReadersLoadRate();
+        }
+
+        private void AllReadersLoadVolume()
+        {
+            ReaderOriginal.Volume = _settingsequalizer.Volume;
+            ReaderTranslate.Volume = _settingsequalizer.Volume;
+            ReaderTranslateOur.Volume = _settingsequalizer.Volume;
+        }
+
+        private void AllReadersLoadRate()
+        {
+            ReaderOriginal.Rate = _settingsequalizer.Speed;
+            ReaderTranslate.Rate = _settingsequalizer.Speed;
+            ReaderTranslateOur.Rate = _settingsequalizer.Speed;
+        }
+
         #endregion
+
+        private void Form1_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible == true)
+            {
+                AllReadersLoad();
+            }                
+        }
     }
 }
