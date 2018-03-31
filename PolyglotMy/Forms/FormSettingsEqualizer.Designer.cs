@@ -102,7 +102,7 @@
             this.gBTextFont.Size = new System.Drawing.Size(282, 98);
             this.gBTextFont.TabIndex = 10;
             this.gBTextFont.TabStop = false;
-            this.gBTextFont.Text = "Гучність";
+            this.gBTextFont.Text = "Швидкість програвання";
             // 
             // trackBarSpeed
             // 
@@ -120,7 +120,7 @@
             this.gBTextColour.Size = new System.Drawing.Size(260, 98);
             this.gBTextColour.TabIndex = 11;
             this.gBTextColour.TabStop = false;
-            this.gBTextColour.Text = "Швидкість програвання";
+            this.gBTextColour.Text = "Гучність";
             // 
             // trackBarVolume
             // 

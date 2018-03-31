@@ -16,6 +16,9 @@
         public const int EqulizerSpeedMaxValue = 10;
         public const int EqulizerSpeedMinValue = -10;
 
+        public const int EqulizerSpeedDefault = -1;
+        public const int EqulizerVolumeDefault = 60;
+
         //Значения по умолчанию
         public const string SpeechSentizerVoice = "Microsoft Anna";
         #endregion

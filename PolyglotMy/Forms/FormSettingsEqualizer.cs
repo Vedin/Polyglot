@@ -132,7 +132,7 @@ namespace PolyglotMy
             }
             catch
             {
-                trackBarVolume.Value = trackBarVolume.Minimum;
+                trackBarVolume.Value = Globals.EqulizerVolumeDefault;
             }
         }
 

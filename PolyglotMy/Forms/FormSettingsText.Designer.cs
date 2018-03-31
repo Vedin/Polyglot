@@ -60,12 +60,14 @@
             // 
             // txtBox
             // 
-            this.txtBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.txtBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtBox.Location = new System.Drawing.Point(6, 19);
             this.txtBox.Name = "txtBox";
+            this.txtBox.ReadOnly = true;
             this.txtBox.Size = new System.Drawing.Size(536, 212);
             this.txtBox.TabIndex = 3;
             this.txtBox.Text = "";
+            this.txtBox.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // gBTextFont
             // 

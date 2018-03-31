@@ -9,6 +9,13 @@ using System.Text.RegularExpressions;
 
 namespace PolyglotMy
 {
+    enum SettingsChanged
+    {
+        None,
+        Text,
+        Equlizer
+    }
+
     public partial class Form1 : Form
     {
         /*
@@ -24,15 +31,25 @@ namespace PolyglotMy
         private SpeechSynthesizer ss = new SpeechSynthesizer();
         int lwst = 0;
 
+        //Ридеры для каждого бокса
         private SpeechSynthesizer ReaderOriginal = new SpeechSynthesizer();//Ридер оригинала
         private SpeechSynthesizer ReaderTranslate = new SpeechSynthesizer();
         private SpeechSynthesizer ReaderTranslateOur = new SpeechSynthesizer();
 
         private object _Lock = new object();
 
+        //Для отслеживания изменения настроек
+        /*
+         * В дальнейшем можно передавать єтот параметр или дать возможность
+         * его менять чтобы економить ресурсы и лишний раз не перезагружать настройки
+         * 
+         */ 
+        private SettingsChanged settings = SettingsChanged.None;
 
         //Settings Members
-        SettingsEqualizer _settingsequalizer = null;
+        SettingsEqualizer _settingsEqualizer = null;
+
+        SettingsText _settingsText = null;
 
         #endregion
 
@@ -65,7 +82,6 @@ namespace PolyglotMy
                 richTextBoxTranslate.Text += voice.Name + new string(' ', 30)/* + voice.InstalledVoice + new string('-',10) + '\n'*/;
             }
             #endregion
-
         }
 
         #region Как я понял для рисовки( я єто даже не трогал)
@@ -228,7 +244,9 @@ namespace PolyglotMy
                     AllReadersPause();
                 }
                 else
-                if (ReaderOriginal.State == SynthesizerState.Paused)
+                if (ReaderOriginal.State == SynthesizerState.Paused
+                    || ReaderTranslate.State == SynthesizerState.Paused
+                    || ReaderTranslateOur.State == SynthesizerState.Paused)
                 {
                     AllReadersResume();
                 }
@@ -272,6 +290,7 @@ namespace PolyglotMy
                 FormSettingsText Fset = new FormSettingsText(this);
                 Fset.Show();
                 this.Hide();
+                settings = SettingsChanged.Text;
             }
             catch (Exception ex)
             {
@@ -288,6 +307,7 @@ namespace PolyglotMy
                 FormSettingsEqualizer Fset = new FormSettingsEqualizer(this);
                 Fset.Show();
                 this.Hide();
+                settings = SettingsChanged.Equlizer;
             }
             catch (Exception ex)
             {
@@ -317,27 +337,7 @@ namespace PolyglotMy
             }
         }
 
-        void Reader_SpeakCompleted(object sender, System.Speech.Synthesis.SpeakCompletedEventArgs e)
-        {
-            try
-            {
-                buttonPlay.Enabled = true;
-                setStopPauseEnabled();
-                ReaderOriginal.SpeakCompleted -= Reader_SpeakCompleted;
-                AllReadersDispose();
-            }
-            catch (ObjectDisposedException)
-            {
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                
-            }
-        }
+        
 
         private void setStop()
         {
@@ -359,19 +359,19 @@ namespace PolyglotMy
         /*На данном этапе процедура выбрасывает месенж об ошибке при любом збое и прекращает 
          * попытку извлечение настроек а все приводит к базовому
          * Потом нужно добавить продолжение извлечение и вывод об ошибке и месте извлечения 
-         * */
-        private void AllReadersLoad()
+         */
+        private void AllReadersLoadVoice()
         {
             ReaderOriginal = new SpeechSynthesizer();
             ReaderTranslate = new SpeechSynthesizer();
             ReaderTranslateOur = new SpeechSynthesizer();
-            _settingsequalizer = SettingsEqualizer.GetSettings();
+            _settingsEqualizer = SettingsEqualizer.GetSettings();
 
             try
             {
-                ReaderOriginal.SelectVoice(_settingsequalizer.VoiceNameLeft);
-                ReaderTranslate.SelectVoice(_settingsequalizer.VoiceNameRight);
-                ReaderTranslateOur.SelectVoice(_settingsequalizer.VoiceNameMid);
+                ReaderOriginal.SelectVoice(_settingsEqualizer.VoiceNameLeft);
+                ReaderTranslate.SelectVoice(_settingsEqualizer.VoiceNameRight);
+                ReaderTranslateOur.SelectVoice(_settingsEqualizer.VoiceNameMid);
                 
             }
             catch (Exception ex)
@@ -388,6 +388,10 @@ namespace PolyglotMy
             ReaderOriginal.Dispose();
             ReaderTranslateOur.Dispose();
             ReaderTranslate.Dispose();
+
+            ReaderOriginal = new SpeechSynthesizer();
+            ReaderTranslate = new SpeechSynthesizer();
+            ReaderTranslateOur = new SpeechSynthesizer();
         }
 
         private void AllReadersPause()
@@ -431,13 +435,14 @@ namespace PolyglotMy
 
         private void AllReadersSpeakAsynk()
         {
-            AllReadersLoad();
-                setStopPauseEnabled();
+            AllReadersLoadVoice();
+            setStopPauseEnabled();
             if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
             {  
                 
                 ReaderOriginal.SpeakAsync(richTextBoxOriginal.Text);
                 ReaderOriginal.Pause();
+                ReaderOriginal.SpeakCompleted += ReaderSpeakCompleted;
             }
 
             if (!string.IsNullOrEmpty(richTextBoxTranslate.Text))
@@ -445,6 +450,7 @@ namespace PolyglotMy
                 
                 ReaderTranslate.SpeakAsync(richTextBoxTranslate.Text);
                 ReaderTranslate.Pause();
+                ReaderTranslate.SpeakCompleted += ReaderSpeakCompleted;
             }
 
             if (!string.IsNullOrEmpty(richTextBoxTranslateOur.Text))
@@ -452,40 +458,172 @@ namespace PolyglotMy
                 
                 ReaderTranslateOur.SpeakAsync(richTextBoxTranslateOur.Text);
                 ReaderTranslateOur.Pause();
+                ReaderTranslateOur.SpeakCompleted += ReaderSpeakCompleted;
             }
             AllReadersLoadSettings();
             AllReadersResume();
             buttonPlay.Enabled = false;
-        }
+        }  
 
         private void AllReadersLoadSettings()
         {
-            AllReadersLoadVolume();
-            AllReadersLoadRate();
+            try
+            {
+                AllReadersLoadVolume();
+                AllReadersLoadRate();
+            }
+            catch(Exception ex)
+            {
+                AllReadersLoadVolume(true);
+                AllReadersLoadRate(true);
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+                     
         }
 
-        private void AllReadersLoadVolume()
+        private void AllReadersLoadVolume(bool isDefault = false)
         {
-            ReaderOriginal.Volume = _settingsequalizer.Volume;
-            ReaderTranslate.Volume = _settingsequalizer.Volume;
-            ReaderTranslateOur.Volume = _settingsequalizer.Volume;
+            if(!isDefault)
+            {
+                ReaderOriginal.Volume = _settingsEqualizer.Volume;
+                ReaderTranslate.Volume = _settingsEqualizer.Volume;
+                ReaderTranslateOur.Volume = _settingsEqualizer.Volume;
+            }
+            else
+            {
+                ReaderOriginal.Volume = Globals.EqulizerVolumeDefault;
+                ReaderTranslate.Volume = Globals.EqulizerVolumeDefault;
+                ReaderTranslateOur.Volume = Globals.EqulizerVolumeDefault;
+            }            
         }
 
-        private void AllReadersLoadRate()
+        private void AllReadersLoadRate(bool isDefault = false)
         {
-            ReaderOriginal.Rate = _settingsequalizer.Speed;
-            ReaderTranslate.Rate = _settingsequalizer.Speed;
-            ReaderTranslateOur.Rate = _settingsequalizer.Speed;
+            if (!isDefault)
+            {
+                ReaderOriginal.Rate = _settingsEqualizer.Speed;
+                ReaderTranslate.Rate = _settingsEqualizer.Speed;
+                ReaderTranslateOur.Rate = _settingsEqualizer.Speed;
+            }
+            else
+            {
+                ReaderOriginal.Rate = Globals.EqulizerSpeedDefault;
+                ReaderTranslate.Rate = Globals.EqulizerSpeedDefault;
+                ReaderTranslateOur.Rate = Globals.EqulizerSpeedDefault;
+            }
+        }
+
+        void ReaderSpeakCompleted(object sender, System.Speech.Synthesis.SpeakCompletedEventArgs e)
+        {
+            try
+            {
+                buttonPlay.Enabled = true;
+                setStopPauseEnabled();
+                /*ReaderOriginal.SpeakCompleted -= Reader_SpeakCompleted;
+                AllReadersDispose();*/
+                (sender as SpeechSynthesizer).SpeakCompleted -= ReaderSpeakCompleted;
+                (sender as SpeechSynthesizer).Dispose();
+            }
+            catch (ObjectDisposedException)
+            {
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
+            }
+        }
+        
+        #endregion
+
+        #region TextBoxes
+
+        private void TextBoxLoadSettings(RichTextBox box ,bool isDefault = false)
+        {
+            if(isDefault)
+            {
+                box.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
+                box.SelectionColor = Color.FromArgb(_settingsText.TextColor);
+                box.Font = _settingsText.TextFont.GetFont();
+            }
+            else
+            {
+                box.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
+                box.SelectionColor = Color.FromArgb(_settingsText.TextColor);
+                box.Font = _settingsText.TextFont.GetFont();
+            }
+        }
+        private void LoaderSettiingsForAllTextBox()
+        {
+            
+            try
+            {
+                _settingsText = SettingsText.GetSettings(); //Десериализация
+                try
+                {
+                    richTextBoxOriginal.SelectAll();
+                    richTextBoxTranslate.SelectAll();
+                    richTextBoxTranslateOur.SelectAll();
+
+                    richTextBoxOriginal.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
+                    richTextBoxOriginal.SelectionColor = Color.FromArgb(_settingsText.TextColor);
+                    richTextBoxOriginal.Font = _settingsText.TextFont.GetFont();
+
+                    richTextBoxTranslate.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
+                    richTextBoxTranslate.SelectionColor = Color.FromArgb(_settingsText.TextColor);
+                    richTextBoxTranslate.Font = _settingsText.TextFont.GetFont();
+
+                    richTextBoxTranslateOur.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
+                    richTextBoxTranslateOur.SelectionColor = Color.FromArgb(_settingsText.TextColor);
+                    richTextBoxTranslateOur.Font = _settingsText.TextFont.GetFont();
+
+                    richTextBoxOriginal.Select(0, 0);
+                    richTextBoxTranslate.Select(0, 0);
+                    richTextBoxTranslateOur.Select(0, 0);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch
+            {
+
+            }                             
         }
 
         #endregion
 
         private void Form1_VisibleChanged(object sender, EventArgs e)
         {
-            if (this.Visible == true)
+            if (settings==SettingsChanged.Equlizer)
             {
-                AllReadersLoad();
-            }                
+                AllReadersLoadVoice();
+                AllReadersLoadSettings();
+            }  
+            if(settings==SettingsChanged.Text)
+            {
+                LoaderSettiingsForAllTextBox();
+            }
+            settings = SettingsChanged.None;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                AllReadersLoadVoice();
+                AllReadersLoadSettings();
+                LoaderSettiingsForAllTextBox();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

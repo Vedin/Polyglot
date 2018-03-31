@@ -27,8 +27,6 @@ namespace PolyglotMy
             _initControlls();
         }
 
-
-
         private void buttonOK_Click(object sender, EventArgs e)//Кнопка окей. Сериализует и закрывает после форму.
         {
             saved_inf();
@@ -60,39 +58,27 @@ namespace PolyglotMy
 
         private void _initControlls()//Загрузка елементов или десирреализация
         {
-            _settingstext = SettingsText.GetSettings(); //Десериализация
-            txtBox.SelectAll();
             try
             {
-                txtBox.SelectionBackColor = Color.FromArgb(_settingstext.BackColor);
+                _settingstext = SettingsText.GetSettings(); //Десериализация
+                txtBox.SelectAll();
+                try
+                {
+                    txtBox.SelectionBackColor = Color.FromArgb(_settingstext.BackColor);
+                    txtBox.SelectionColor = Color.FromArgb(_settingstext.TextColor);
+                    txtBox.Font = _settingstext.TextFont.GetFont();
+                }
+                catch
+                {
+                    
+                }
+                txtBox.Select(0, 0);
             }
-            catch
+            catch(Exception ex)
             {
-                txtBox.SelectionBackColor = Color.FromArgb(0xFFFFFF);
+                MessageBox.Show(ex.Message, Globals.ERR + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            try
-            {
-                txtBox.SelectionColor = Color.FromArgb(_settingstext.TextColor);
-            }
-            catch
-            {
-                txtBox.SelectionColor = Color.FromArgb(0x000000);
-            }
-            /* try
-             {
-                 txtBox.BackColor = Color.FromArgb(_settingstext.BackColor);
-             }
-             catch { }
-             try
-             {
-                 txtBox.ForeColor = Color.FromArgb(_settingstext.TextColor);
-             }
-             catch { }          
-             try
-             {
-                 txtBox.Font = _settingstext.TextFont.GetFont();
-             }
-             catch { }*/
+            txtBox.Text = "Ві можете змінювати колір та шрифт тексту в данному вікні. Ці налаштування будуть перенесенні до головного вікна.";
         }
 
         private void button2_Click(object sender, EventArgs e)//Изменение шрифтов
@@ -122,6 +108,11 @@ namespace PolyglotMy
         private void FormSettingsText_FormClosing(object sender, FormClosingEventArgs e)
         {
             formbefore.Show();
+        }
+
+        private void txtBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
