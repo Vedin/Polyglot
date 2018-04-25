@@ -40,6 +40,10 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonAplly = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveSettTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gBEqulizer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SliderRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SliderMid)).BeginInit();
@@ -49,6 +53,7 @@
             this.gBTextColour.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).BeginInit();
             this.gBButtons.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gBEqulizer
@@ -56,9 +61,9 @@
             this.gBEqulizer.Controls.Add(this.SliderRight);
             this.gBEqulizer.Controls.Add(this.SliderMid);
             this.gBEqulizer.Controls.Add(this.SliderLeft);
-            this.gBEqulizer.Location = new System.Drawing.Point(12, 12);
+            this.gBEqulizer.Location = new System.Drawing.Point(12, 27);
             this.gBEqulizer.Name = "gBEqulizer";
-            this.gBEqulizer.Size = new System.Drawing.Size(548, 237);
+            this.gBEqulizer.Size = new System.Drawing.Size(548, 222);
             this.gBEqulizer.TabIndex = 3;
             this.gBEqulizer.TabStop = false;
             this.gBEqulizer.Text = "Еквалайзер";
@@ -172,11 +177,45 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.настройкиToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(566, 24);
+            this.menuStrip1.TabIndex = 15;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveSettTextToolStripMenuItem,
+            this.тектToolStripMenuItem});
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.настройкиToolStripMenuItem.Text = "Файл";
+            // 
+            // SaveSettTextToolStripMenuItem
+            // 
+            this.SaveSettTextToolStripMenuItem.Name = "SaveSettTextToolStripMenuItem";
+            this.SaveSettTextToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.SaveSettTextToolStripMenuItem.Text = "Сохранить настройки как...";
+            this.SaveSettTextToolStripMenuItem.Click += new System.EventHandler(this.SaveSettTextToolStripMenuItem_Click);
+            // 
+            // тектToolStripMenuItem
+            // 
+            this.тектToolStripMenuItem.Name = "тектToolStripMenuItem";
+            this.тектToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.тектToolStripMenuItem.Text = "Загрузить настройки из файла...";
+            this.тектToolStripMenuItem.Click += new System.EventHandler(this.тектToolStripMenuItem_Click);
+            // 
             // FormSettingsEqualizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 401);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.gBButtons);
             this.Controls.Add(this.gBTextFont);
             this.Controls.Add(this.gBTextColour);
@@ -196,7 +235,10 @@
             this.gBTextColour.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarVolume)).EndInit();
             this.gBButtons.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -214,5 +256,9 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonAplly;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveSettTextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem тектToolStripMenuItem;
     }
 }

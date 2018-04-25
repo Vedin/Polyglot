@@ -25,6 +25,7 @@ namespace PolyglotMy
             this.formbefore = formbefore;
             InitializeComponent();
             _initControlls();
+            //_initControlls();
         }
 
         private void buttonOK_Click(object sender, EventArgs e)//Кнопка окей. Сериализует и закрывает после форму.
@@ -36,9 +37,9 @@ namespace PolyglotMy
         private void saved_inf()//Изменение данных и сериализация
         {
             Color c = new Color();
-            c = txtBox.BackColor;
+            c = txtBox.SelectionBackColor;
             _settingstext.BackColor = c.ToArgb();
-            c = txtBox.ForeColor;
+            c = txtBox.SelectionColor;
             _settingstext.TextColor = c.ToArgb();
             _settingstext.TextFont = new BoxFont(txtBox.Font);
             _settingstext.Save();  //Сериализация     
@@ -61,6 +62,7 @@ namespace PolyglotMy
             try
             {
                 _settingstext = SettingsText.GetSettings(); //Десериализация
+                txtBox.Text = "Ві можете змінювати колір та шрифт тексту в данному вікні. Ці налаштування будуть перенесенні до головного вікна.";
                 txtBox.SelectAll();
                 try
                 {
@@ -68,17 +70,17 @@ namespace PolyglotMy
                     txtBox.SelectionColor = Color.FromArgb(_settingstext.TextColor);
                     txtBox.Font = _settingstext.TextFont.GetFont();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    
+                    MessageBox.Show(ex.Message, Globals.ERR + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                txtBox.Select(0, 0);
+                txtBox.Select(0,0);
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, Globals.ERR + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            txtBox.Text = "Ві можете змінювати колір та шрифт тексту в данному вікні. Ці налаштування будуть перенесенні до головного вікна.";
+            
         }
 
         private void button2_Click(object sender, EventArgs e)//Изменение шрифтов
@@ -94,6 +96,7 @@ namespace PolyglotMy
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtBox.SelectAll();
+
                 if (rbtn1.Checked == true)
                 {
                     txtBox.SelectionColor = colorDialog1.Color;
@@ -112,6 +115,38 @@ namespace PolyglotMy
 
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadSettingsTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Polyglot (*.xml)|*.xml|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string defaultFileName = Globals.SettingsFileText;
+                Globals.SettingsFileText = openFileDialog.FileName;
+                _initControlls();
+                Globals.SettingsFileText = defaultFileName;
+            }
+        }
+
+        private void SaveSettTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Polyglot (*.xml)|*.xml|All files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string defaultFileName = Globals.SettingsFileText;
+                Globals.SettingsFileText = saveFileDialog.FileName;
+                saved_inf();
+                Globals.SettingsFileText = defaultFileName;
+            }
 
         }
     }

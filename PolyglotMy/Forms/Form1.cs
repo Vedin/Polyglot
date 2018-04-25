@@ -556,6 +556,8 @@ namespace PolyglotMy
                 box.Font = _settingsText.TextFont.GetFont();
             }
         }
+
+
         private void LoaderSettiingsForAllTextBox()
         {
             

@@ -42,18 +42,23 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveSettTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gBText.SuspendLayout();
             this.gBTextFont.SuspendLayout();
             this.gBTextColour.SuspendLayout();
             this.gBButtons.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gBText
             // 
             this.gBText.Controls.Add(this.txtBox);
-            this.gBText.Location = new System.Drawing.Point(12, 12);
+            this.gBText.Location = new System.Drawing.Point(12, 27);
             this.gBText.Name = "gBText";
-            this.gBText.Size = new System.Drawing.Size(548, 237);
+            this.gBText.Size = new System.Drawing.Size(548, 222);
             this.gBText.TabIndex = 7;
             this.gBText.TabStop = false;
             this.gBText.Text = "Текст";
@@ -63,8 +68,7 @@
             this.txtBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtBox.Location = new System.Drawing.Point(6, 19);
             this.txtBox.Name = "txtBox";
-            this.txtBox.ReadOnly = true;
-            this.txtBox.Size = new System.Drawing.Size(536, 212);
+            this.txtBox.Size = new System.Drawing.Size(536, 197);
             this.txtBox.TabIndex = 3;
             this.txtBox.Text = "";
             this.txtBox.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
@@ -174,12 +178,49 @@
             this.buttonCancel.TabIndex = 0;
             this.buttonCancel.Text = "Відмінити";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.UseWaitCursor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.настройкиToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(572, 24);
+            this.menuStrip1.TabIndex = 14;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveSettTextToolStripMenuItem,
+            this.тектToolStripMenuItem});
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.настройкиToolStripMenuItem.Text = "Файл";
+            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
+            // 
+            // SaveSettTextToolStripMenuItem
+            // 
+            this.SaveSettTextToolStripMenuItem.Name = "SaveSettTextToolStripMenuItem";
+            this.SaveSettTextToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.SaveSettTextToolStripMenuItem.Text = "Сохранить настройки как...";
+            this.SaveSettTextToolStripMenuItem.Click += new System.EventHandler(this.SaveSettTextToolStripMenuItem_Click);
+            // 
+            // тектToolStripMenuItem
+            // 
+            this.тектToolStripMenuItem.Name = "тектToolStripMenuItem";
+            this.тектToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.тектToolStripMenuItem.Text = "Загрузить настройки из файла...";
+            this.тектToolStripMenuItem.Click += new System.EventHandler(this.LoadSettingsTextToolStripMenuItem_Click);
             // 
             // FormSettingsText
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 423);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.gBButtons);
             this.Controls.Add(this.gBTextFont);
             this.Controls.Add(this.gBTextColour);
@@ -193,7 +234,10 @@
             this.gBTextColour.ResumeLayout(false);
             this.gBTextColour.PerformLayout();
             this.gBButtons.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -213,5 +257,9 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveSettTextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem тектToolStripMenuItem;
     }
 }
