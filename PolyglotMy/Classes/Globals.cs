@@ -2,6 +2,16 @@
 {
     class Globals
     {
+        public class TextForBoxes
+        {
+            public static readonly string AllowedCharacters = "qwertyuiopasdfghjklzxcvbnm0123456789";
+            public class AllTexts
+            {
+                public  const string FileName = "allfiles.xml";
+            }
+            
+        }
+
         #region File Settings Way
         public static string SettingsFile = "settings.xml";
         public static string SettingsFileEqulizer = "settigsEqulizer.xml";

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SettingsText xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TextColor>-16777216</TextColor>
-  <BackColor>-16744384</BackColor>
+  <BackColor>-256</BackColor>
   <TextFont>
     <familyName>Arial</familyName>
     <emSize>12</emSize>
