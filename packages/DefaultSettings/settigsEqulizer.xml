@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<SettingsEqualizer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <VoiceNameLeft>Microsoft Anna</VoiceNameLeft>
+  <VoiceNameRight>Microsoft Anna</VoiceNameRight>
+  <VoiceNameMid>Microsoft Anna</VoiceNameMid>
+  <Volume>60</Volume>
+  <Speed>-1</Speed>
+</SettingsEqualizer>
