@@ -11,7 +11,10 @@ namespace PolyglotMy
         public byte gbiCharSet;
         public bool gbiVerticalFont;
 
-        public BoxFont(){}
+        public BoxFont()
+        {
+            
+        }
         public BoxFont(Font font)
         {
             this.familyName = font.FontFamily.Name;

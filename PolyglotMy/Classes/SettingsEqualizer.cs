@@ -8,11 +8,13 @@ namespace PolyglotMy
         public string VoiceNameLeft { get; set; }
         public string VoiceNameRight { get; set; }
         public string VoiceNameMid { get; set; }
-        /*public int SliderLeft { get; set; }
-        public int SliderRight { get; set; }
-        public int SliderMid { get; set; }*/
+
+        public int PauseWords { get; set; }
+        public int PauseSenteces { get; set; }
+
         public int Volume { get; set; }
         public int Speed { get; set; }
+
         public static SettingsEqualizer GetSettings()
         {
             SettingsEqualizer formsett = null;

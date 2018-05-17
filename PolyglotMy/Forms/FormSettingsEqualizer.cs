@@ -16,12 +16,17 @@ namespace PolyglotMy
         private SpeechSynthesizer Reader = new SpeechSynthesizer();
 
         #region Form Functions
+        
         public FormSettingsEqualizer()
         {
             InitializeComponent();
             _initControlls();
         }
 
+        /*
+         * Конструктор для случая вызова и передачи формы с которой был вызов (ну или форму которую
+         * нужно вызвать после закрытия данной формы)
+         */
         public FormSettingsEqualizer(Form formbefore)
         {
             InitializeComponent();
@@ -29,6 +34,9 @@ namespace PolyglotMy
             this.formbefore = formbefore;
         }
 
+        /*
+         * Открываем форму с которой мы были вызваны
+         */
         private void FormSettingsEqualizer_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (formbefore != null) formbefore.Show();
@@ -66,9 +74,14 @@ namespace PolyglotMy
 
             initionSliders();
             initionSpeed();
-            initionVolume();       
+            initionVolume();
+            initionPause();
         }
 
+        /*
+         * Извлечение масива голосов 
+         * От их количества меняеться максимальный размер контролов голосов
+         */
         private void GetInstalVoicesToComboVoices()
         {
             try
@@ -84,7 +97,9 @@ namespace PolyglotMy
                 MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        /*
+         * Инициализация всех контролов для голосов
+         */
         private void initionSliders()
         {
             //Equlizer
@@ -121,6 +136,9 @@ namespace PolyglotMy
             
         }
 
+        /*
+         * Выгрузка настроек для скрола громкости
+         */
         private void initionVolume()
         {
             //Volume
@@ -132,10 +150,13 @@ namespace PolyglotMy
             }
             catch
             {
-                trackBarVolume.Value = trackBarVolume.Minimum;
+                trackBarVolume.Value = Globals.EqulizerVolumeDefault;
             }
         }
 
+        /*
+         * Выгрузка настроек для скрола скорости
+         */
         private void initionSpeed()
         {
             //Speed
@@ -150,14 +171,36 @@ namespace PolyglotMy
                 trackBarSpeed.Value = trackBarSpeed.Minimum;
             }
         }
-        
+        /*
+         * Выгрузка настроек пауз между словами и предложениями
+         */
+        private void initionPause()
+        {
+            try
+            {
+                numericUpDSentence.Value = _settingsequalizer.PauseSenteces;
+            }
+            catch
+            {
+                numericUpDSentence.Value = numericUpDSentence.Minimum;
+            }
+            try
+            {
+                numericUpDWords.Value = _settingsequalizer.PauseWords;
+            }
+            catch
+            {
+                numericUpDWords.Value = numericUpDWords.Minimum;
+            }
+        }
 
-        
-        
         #endregion
 
         #region Others
-
+        /*
+         * Поиск соответствие сохраненых настроек голоса с теми что установленны на компютере
+         * Если соответствие не найдено то выводиться -1 - голос по умолчанию.
+         */
         private int IndexOfVoiceInVoices(string VoiceName)
         {
             for(int i = 0; i < Voices.Count;i++)
@@ -167,12 +210,22 @@ namespace PolyglotMy
             return -1;
         }
 
+        /*
+         * Получение название голоса по индексу на скроле
+         * Из массва установленных олосов который создаеться при запуске програмы
+         * Вывод дефолтного голоса( нулевого по индексу) при выходе за размер массива
+         */
+
         private string ValueOfIndexInVoices(int index)
         {
             if (index < Voices.Count && index >= 0) return Voices[index].Name;
             return Voices[0].Name;
         }
 
+        /*
+         * Сохроняет все елементы в клас  settingsequalizer 
+         * Запускает метод Save который все сереализирует в Xml файл
+         */
         private void saved_inf()
         {
             _settingsequalizer.VoiceNameLeft = ValueOfIndexInVoices(SliderLeft.Value);
@@ -180,9 +233,38 @@ namespace PolyglotMy
             _settingsequalizer.VoiceNameRight = ValueOfIndexInVoices(SliderRight.Value);
             _settingsequalizer.Speed = trackBarSpeed.Value;
             _settingsequalizer.Volume = trackBarVolume.Value;
+            _settingsequalizer.PauseSenteces =(int) numericUpDSentence.Value;
+            _settingsequalizer.PauseWords = (int)numericUpDWords.Value;
+
             _settingsequalizer.Save();
         }
 
         #endregion
+
+        private void SaveSettTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Polyglot (*.xml)|*.xml|All files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string defaultFileName = Globals.SettingsFileEqulizer;
+                Globals.SettingsFileEqulizer  = saveFileDialog.FileName;
+                saved_inf();
+                Globals.SettingsFileEqulizer = defaultFileName;
+            }
+        }
+
+        private void тектToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Polyglot (*.xml)|*.xml|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string defaultFileName = Globals.SettingsFileEqulizer;
+                Globals.SettingsFileEqulizer = openFileDialog.FileName;
+                _initControlls();
+                Globals.SettingsFileEqulizer = defaultFileName;
+            }
+        }
     }
 }
