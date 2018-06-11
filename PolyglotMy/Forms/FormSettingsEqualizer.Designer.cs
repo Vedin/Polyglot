@@ -49,6 +49,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDWords = new System.Windows.Forms.NumericUpDown();
             this.numericUpDSentence = new System.Windows.Forms.NumericUpDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbVoices = new System.Windows.Forms.ComboBox();
             this.gBTextFont.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).BeginInit();
             this.gBTextColour.SuspendLayout();
@@ -62,6 +64,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDWords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDSentence)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gBTextFont
@@ -149,7 +152,7 @@
             this.настройкиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(566, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(598, 24);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -217,6 +220,7 @@
             this.gBEqulizer.TabIndex = 3;
             this.gBEqulizer.TabStop = false;
             this.gBEqulizer.Text = "Еквалайзер";
+            this.gBEqulizer.Visible = false;
             // 
             // groupBox1
             // 
@@ -268,11 +272,32 @@
             this.numericUpDSentence.Size = new System.Drawing.Size(120, 20);
             this.numericUpDSentence.TabIndex = 0;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.cmbVoices);
+            this.groupBox2.Location = new System.Drawing.Point(12, 96);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(548, 54);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Voices...";
+            // 
+            // cmbVoices
+            // 
+            this.cmbVoices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVoices.FormattingEnabled = true;
+            this.cmbVoices.Location = new System.Drawing.Point(18, 22);
+            this.cmbVoices.Name = "cmbVoices";
+            this.cmbVoices.Size = new System.Drawing.Size(508, 21);
+            this.cmbVoices.TabIndex = 0;
+            // 
             // FormSettingsEqualizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 401);
+            this.ClientSize = new System.Drawing.Size(598, 401);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.gBButtons);
@@ -300,6 +325,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDWords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDSentence)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +353,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDWords;
         private System.Windows.Forms.NumericUpDown numericUpDSentence;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cmbVoices;
     }
 }

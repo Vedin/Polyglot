@@ -72,13 +72,13 @@ namespace PolyglotMy
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, Globals.ERR + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Form1.Massage(ex), Globals.ERR + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 txtBox.Select(0,0);
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, Globals.ERR + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Form1.Massage(ex), Globals.ERR + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

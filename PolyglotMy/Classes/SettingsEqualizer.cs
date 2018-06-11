@@ -5,9 +5,7 @@ namespace PolyglotMy
 {
     public class SettingsEqualizer
     {
-        public string VoiceNameLeft { get; set; }
-        public string VoiceNameRight { get; set; }
-        public string VoiceNameMid { get; set; }
+        public string VoiceName { get; set; }
 
         public int PauseWords { get; set; }
         public int PauseSenteces { get; set; }

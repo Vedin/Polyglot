@@ -56,7 +56,7 @@
             this.richTextBoxOriginal.Size = new System.Drawing.Size(753, 126);
             this.richTextBoxOriginal.TabIndex = 0;
             this.richTextBoxOriginal.Text = "";
-            this.richTextBoxOriginal.TextChanged += new System.EventHandler(this.richTextBoxTranslate_TextChanged);
+            this.richTextBoxOriginal.TextChanged += new System.EventHandler(this.RichTextBoxTranslate_TextChanged);
             // 
             // buttonPlay
             // 
@@ -135,7 +135,7 @@
             this.додатиТекстДоБібліотекиToolStripMenuItem.Name = "додатиТекстДоБібліотекиToolStripMenuItem";
             this.додатиТекстДоБібліотекиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.додатиТекстДоБібліотекиToolStripMenuItem.Text = "Додати текст до бібліотеки";
-            this.додатиТекстДоБібліотекиToolStripMenuItem.Click += new System.EventHandler(this.додатиТекстДоБібліотекиToolStripMenuItem_Click);
+            this.додатиТекстДоБібліотекиToolStripMenuItem.Click += new System.EventHandler(this.AddTextToLibraryToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem
             // 
@@ -151,14 +151,14 @@
             this.еквалайзерToolStripMenuItem.Name = "еквалайзерToolStripMenuItem";
             this.еквалайзерToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.еквалайзерToolStripMenuItem.Text = "Еквалайзер";
-            this.еквалайзерToolStripMenuItem.Click += new System.EventHandler(this.еквалайзерToolStripMenuItem_Click);
+            this.еквалайзерToolStripMenuItem.Click += new System.EventHandler(this.OpenFormSettingsEquilezer);
             // 
             // тектToolStripMenuItem
             // 
             this.тектToolStripMenuItem.Name = "тектToolStripMenuItem";
             this.тектToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.тектToolStripMenuItem.Text = "Тект";
-            this.тектToolStripMenuItem.Click += new System.EventHandler(this.тектToolStripMenuItem_Click);
+            this.тектToolStripMenuItem.Click += new System.EventHandler(this.OpenFormSettingsText);
             // 
             // buttonStop
             // 
@@ -225,8 +225,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "TextToSpeech";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.Form1_VisibleChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -244,8 +243,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxTranslate;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem еквалайзерToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem тектToolStripMenuItem;
@@ -255,6 +252,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem додатиТекстДоБібліотекиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
     }
 }
 

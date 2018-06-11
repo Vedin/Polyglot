@@ -1,46 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading;
+using System.Text.RegularExpressions;
+
 namespace PolyglotMy
 {
     partial class Form1 : Form
     {
-        private int count = 0;
-        //Параметры для выделения текста 
+       
+        //Символи для анализа и деления текста 
+        private readonly char[] splitSentenceSymbols = { '.', '?', '!' };
+        private readonly char[] splitWordsSymbols = { ' ', '\n' ,'\t'};
+        private readonly string[] splitPrases = new string[] { "###|###" };
+        private Regex regexReadWord = new Regex(@"[0-9A-Za-z]");
 
-        //Индекси для выделений
-        private int indexCurentWord = 0;
-        private int lengthWordsBefore = 0;
-        private int lengthSentencesBeforeInWords = 0;
+        //Индекси для выделений 
+        //Общие
         private int indexCurrentSentence = 0;
-        private int lengthSentencesBeforeInSymbols = 0;
+        private int indexCurrentPrase = 0;
+        //Оригинал
+        private int indexOriginalCurentWord = 0;
+        private int lengthSentenceOriginalWordsBefore = 0;
+        private int lengthSentenceOriginalBeforeInWords = 0;
+        private int lengthOriginalPhrasesBeforeInWords = 0;
+        private int lengthOriginalPrasesBefore = 0;
 
-        //Масивы разделений
-        private string[] Words = null;
-        private string[] SentencesTranslate = null;
+        //Перевод
+        private int lengthTranslateSentencesBeforeInSymbols = 0;
+        //Дословный перевод        
+        private int lengthLiteralTranslatePrasesBefore = 0;
 
-        private List<int> SentencesOriginalLengthInWords = new List<int>();
+        //Масивы разделений текста после обработки на слова фразы и предложения
+        private string[] wordsOriginal = null;
+        private string[] praseOriginal = null;
+
+        private string[] praseLiteralTranslate = null;
+
+        private string[] sentencesTranslate = null;
+
+        private List<int> sentencesOriginalLengthInWords = new List<int>();
+        private List<int> prasesOriginalLengthInWords = new List<int>();
 
         private void SpeakProgresser(object sender, SpeakProgressEventArgs e)
         {
-            count++;
-            while ((Words.Length > indexCurentWord) && (Words[indexCurentWord].Length == 0))
+            //для пропуска слов что не читаються к примеру просто различних знаков припинания
+            while(!regexReadWord.IsMatch(wordsOriginal[indexOriginalCurentWord]))
             {
-                lengthWordsBefore++;
-                indexCurentWord++;
+                CalculatedIndexersToSelentionText();
             }
 
             SelectTextOrifginal();
             SelectTextTranslate();
+            SelectTextLiteralTranslate();
+           
+            AllReadersPause();
             CalculatedIndexersToSelentionText();
+            AllReadersResume();
             
-
         }
 
         private void SelectTextTranslate()
@@ -49,8 +68,7 @@ namespace PolyglotMy
             richTextBoxTranslate.SelectionColor = Color.Black;
             richTextBoxTranslate.SelectionBackColor = Color.White;
 
-            richTextBoxLiteralTranslate.Text = Words.Length + "\n ------------\n" + count;
-            richTextBoxTranslate.Select(lengthSentencesBeforeInSymbols, SentencesTranslate[indexCurrentSentence].Length);
+            richTextBoxTranslate.Select(lengthTranslateSentencesBeforeInSymbols, sentencesTranslate[indexCurrentSentence].Length);
             richTextBoxTranslate.SelectionColor = Color.FromArgb(_settingsText.TextColor);
             richTextBoxTranslate.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
         }
@@ -61,57 +79,130 @@ namespace PolyglotMy
             richTextBoxOriginal.SelectionColor = Color.Black;
             richTextBoxOriginal.SelectionBackColor = Color.White;
 
-            richTextBoxOriginal.Select(lengthWordsBefore, Words[indexCurentWord].Length);
+            richTextBoxOriginal.Select(lengthSentenceOriginalWordsBefore, wordsOriginal[indexOriginalCurentWord].Length);
             richTextBoxOriginal.SelectionColor = Color.FromArgb(_settingsText.TextColor);
             richTextBoxOriginal.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
         }
 
-        private void CalculatedIndexersToSelentionText()
+        private void SelectTextLiteralTranslate()
         {
-            AllReadersPause();
-            if (indexCurentWord > lengthSentencesBeforeInWords + SentencesOriginalLengthInWords[indexCurrentSentence])
+            richTextBoxLiteralTranslate.SelectAll();
+            richTextBoxLiteralTranslate.SelectionColor = Color.Black;
+            richTextBoxLiteralTranslate.SelectionBackColor = Color.White;
+
+            richTextBoxLiteralTranslate.Select(lengthLiteralTranslatePrasesBefore, praseLiteralTranslate[indexCurrentPrase].Length);
+            richTextBoxLiteralTranslate.SelectionColor = Color.FromArgb(_settingsText.TextColor);
+            richTextBoxLiteralTranslate.SelectionBackColor = Color.FromArgb(_settingsText.BackColor);
+        }
+        private void CalculatedIndexersToSelentionText(bool Pause = true)
+        {          
+            if (indexOriginalCurentWord > lengthSentenceOriginalBeforeInWords + sentencesOriginalLengthInWords[indexCurrentSentence])
             {
-                lengthSentencesBeforeInWords += SentencesOriginalLengthInWords[indexCurrentSentence];
-                lengthSentencesBeforeInSymbols += SentencesTranslate[indexCurrentSentence].Length + 1;
+                lengthSentenceOriginalBeforeInWords += sentencesOriginalLengthInWords[indexCurrentSentence];
+                lengthTranslateSentencesBeforeInSymbols += sentencesTranslate[indexCurrentSentence].Length + 1;
                 indexCurrentSentence++;
-                Thread.Sleep(_settingsEqualizer.PauseSenteces);
+                if(Pause) Thread.Sleep(_settingsEqualizer.PauseSenteces);
+            }
+            if (indexOriginalCurentWord > lengthOriginalPhrasesBeforeInWords + prasesOriginalLengthInWords[indexCurrentSentence])
+            {
+                lengthOriginalPhrasesBeforeInWords += prasesOriginalLengthInWords[indexCurrentSentence];
+                lengthOriginalPrasesBefore += praseOriginal[indexCurrentPrase].Length;
+                lengthLiteralTranslatePrasesBefore += praseLiteralTranslate[indexCurrentPrase].Length;
+
+                indexCurrentPrase++;
             }
 
-            if (Words[indexCurentWord].Length > 2) Thread.Sleep(_settingsEqualizer.PauseWords);
 
-            AllReadersResume();
+            if (Pause) if (wordsOriginal[indexOriginalCurentWord].Length > 2) Thread.Sleep(_settingsEqualizer.PauseWords);
 
-            lengthWordsBefore += Words[indexCurentWord].Length + 1;
-            indexCurentWord++;
+            lengthSentenceOriginalWordsBefore += wordsOriginal[indexOriginalCurentWord].Length + 1;
+            indexOriginalCurentWord++;
+
         }
+            /*
+             if (lengthOriginalWordsBefore > lengthOriginalPrasesBefore/* + praseOriginal[indexCurrentPrase].Length*/
+           /* {
+                lengthOriginalPrasesBefore += praseOriginal[indexCurrentPrase].Length;
+                lengthLiteralTranslatePrasesBefore += praseLiteralTranslate[indexCurrentPrase].Length;
+
+                indexCurrentPrase++;
+            }
+            */
 
 
         private void DefaultFieldsForSelectionText()
         {
-            indexCurentWord = 0;
-            lengthWordsBefore = 0;
-            lengthSentencesBeforeInWords = 0;
+            //анулирование параметров для выделения слов в Оригинал(Original)
+            indexOriginalCurentWord = 0;
+            lengthSentenceOriginalWordsBefore = 0;
+            lengthSentenceOriginalBeforeInWords = 0;
+
+            //анулирование параметров для вделения предложений в Переводе(Traslate)
             indexCurrentSentence = 0;
-            lengthSentencesBeforeInSymbols = 0;
-            count = 0;
+            lengthTranslateSentencesBeforeInSymbols = 0;
 
-            Words = null;
-            SentencesTranslate = null;
+            //анулирование для дословного перевода(Literal Translate)
+            indexCurrentPrase = 0;
+            lengthOriginalPrasesBefore = 0;
+            lengthLiteralTranslatePrasesBefore = 0;
+            
+            wordsOriginal = null;
+            praseLiteralTranslate = null;
+            praseOriginal = null;
+            sentencesTranslate = null;
 
-            SentencesOriginalLengthInWords = new List<int>();
+            sentencesOriginalLengthInWords = new List<int>();
         }
 
         private void DividerSentecesOriginal()
         {
-            foreach (string str in richTextBoxOriginal.Text.Split(sentenceSymbols))
+            foreach (string str in richTextBoxOriginal.Text.Split(splitSentenceSymbols))
             {
-                SentencesOriginalLengthInWords.Add(str.Split(' ').Length - 1);
+                sentencesOriginalLengthInWords.Add(str.Split(splitWordsSymbols).Length - 1);
+            }
+        }
+        private void DividerPrasesOriginal()
+        {
+            foreach (string str in praseOriginal)
+            {
+                prasesOriginalLengthInWords.Add(str.Split(splitWordsSymbols).Length - 1);
             }
         }
 
         public static double FlaschScore(int words, int sentences, int syllables)
         {
             return 206.835 - 1.015 * words / sentences - 84.6 * syllables / words;
+        }
+
+        private void GetRealTextDivideTextByPhrase()
+        {
+            string[] prases = null;
+            for (int i = 0; i < text.Length; i++)
+            {                
+                prases = text[i].Split(splitPrases, StringSplitOptions.RemoveEmptyEntries);
+                textForBoxes[i] = "";
+                foreach(string str in prases)
+                {
+                    textForBoxes[i] += str;
+                }
+                switch (i)
+                {
+                    case 0: praseOriginal = prases;
+                        break;
+                    case 1: praseLiteralTranslate = prases;
+                        break;
+                }
+            }
+            //MessageBox.Show("praseLiteralTranslate" + praseLiteralTranslate.Length +"   "+ praseOriginal.Length, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void DividerAllTexts()
+        {
+            wordsOriginal = richTextBoxOriginal.Text.Split(splitWordsSymbols);
+
+            sentencesTranslate = richTextBoxTranslate.Text.Split(splitSentenceSymbols);
+            DividerSentecesOriginal();
+            DividerPrasesOriginal();
         }
     }
 }

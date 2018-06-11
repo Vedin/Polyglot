@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace PolyglotMy
 {
-    class TextForBoxes
+    public class TextForBoxes
     {
         private static readonly Random random = new Random();       
 
@@ -34,7 +34,13 @@ namespace PolyglotMy
         
         public string Save()
         {
-            string filename = "textfile\\" + GetNewFileName();
+            string folderName = @"c:\Top-Level Folder\Polyglot";
+            string pathString = System.IO.Path.Combine(folderName, "textfile");
+
+            System.IO.Directory.CreateDirectory(pathString);
+            string filename =GetNewFileName();
+
+            filename = System.IO.Path.Combine(pathString, filename);
 
             if (File.Exists(filename)) File.Delete(filename);
             using (FileStream fs = new FileStream(filename, FileMode.Create))

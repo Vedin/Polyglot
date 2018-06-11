@@ -21,6 +21,14 @@ namespace PolyglotMy
         {
             InitializeComponent();
             _initControlls();
+            Voices = new List<Voice>();
+            Reader.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
+            cmbVoices.DataSource = Voices;
+            cmbVoices.ValueMember = "InstalledVoice";
+            cmbVoices.DisplayMember = "Name";
+            /*cmbBit.SelectedIndex = 1;
+            cmbChannel.SelectedIndex = 1;
+            cmbHz.SelectedIndex = 2;*/
         }
 
         /*
@@ -28,9 +36,15 @@ namespace PolyglotMy
          * нужно вызвать после закрытия данной формы)
          */
         public FormSettingsEqualizer(Form formbefore)
+           : base()
         {
             InitializeComponent();
             _initControlls();
+            Voices = new List<Voice>();
+            Reader.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
+            cmbVoices.DataSource = Voices;
+            cmbVoices.ValueMember = "InstalledVoice";
+            cmbVoices.DisplayMember = "Name";
             this.formbefore = formbefore;
         }
 
@@ -86,15 +100,21 @@ namespace PolyglotMy
         {
             try
             {
-                Voices = new List<Voice>();
+                /*Voices = new List<Voice>();
                 Reader.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
                 
                 Globals.EqulizerSliderMinValue = 0;
-                Globals.EqulizerSliderMaxValue = Voices.Count - 1;
+                Globals.EqulizerSliderMaxValue = Voices.Count - 1;*/
+                Voices = new List<Voice>();
+                Reader.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
+                cmbVoices.DataSource = Voices;
+                cmbVoices.ValueMember = "InstalledVoice";
+                cmbVoices.DisplayMember = "Name";
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                MessageBox.Show(Form1.Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         /*
@@ -111,13 +131,13 @@ namespace PolyglotMy
             SliderMid.Minimum = Globals.EqulizerSliderMinValue;
             try
             {
-                SliderLeft.Value =  IndexOfVoiceInVoices( _settingsequalizer.VoiceNameLeft);
+                SliderLeft.Value =  IndexOfVoiceInVoices( _settingsequalizer.VoiceName);
             }
             catch
             {
                 SliderLeft.Value = SliderLeft.Minimum;
             }
-            try
+           /* try
             {
                 SliderRight.Value = IndexOfVoiceInVoices(_settingsequalizer.VoiceNameRight);
             }
@@ -132,7 +152,7 @@ namespace PolyglotMy
             catch
             {
                 SliderMid.Value = SliderMid.Minimum;
-            }
+            }*/
             
         }
 
@@ -228,9 +248,11 @@ namespace PolyglotMy
          */
         private void saved_inf()
         {
-            _settingsequalizer.VoiceNameLeft = ValueOfIndexInVoices(SliderLeft.Value);
-            _settingsequalizer.VoiceNameMid = ValueOfIndexInVoices(SliderMid.Value);
-            _settingsequalizer.VoiceNameRight = ValueOfIndexInVoices(SliderRight.Value);
+            _settingsequalizer.VoiceName = ValueOfIndexInVoices(cmbVoices.SelectedIndex);
+            
+            
+           /* _settingsequalizer.VoiceNameMid = ValueOfIndexInVoices(SliderMid.Value);
+            _settingsequalizer.VoiceNameRight = ValueOfIndexInVoices(SliderRight.Value);*/
             _settingsequalizer.Speed = trackBarSpeed.Value;
             _settingsequalizer.Volume = trackBarVolume.Value;
             _settingsequalizer.PauseSenteces =(int) numericUpDSentence.Value;

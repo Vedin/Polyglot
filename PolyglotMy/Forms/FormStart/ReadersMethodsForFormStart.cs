@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Threading;
+
 namespace PolyglotMy
 {
     partial class Form1 : Form
@@ -14,12 +9,7 @@ namespace PolyglotMy
         private void AllReadersDispose()
         {
             ReaderOriginal.Dispose();
-            ReaderTranslateOur.Dispose();
-            ReaderTranslate.Dispose();
-
-            ReaderOriginal = new SpeechSynthesizer();
-            ReaderTranslate = new SpeechSynthesizer();
-            ReaderTranslateOur = new SpeechSynthesizer();
+            ReaderOriginal = new SpeechSynthesizer();           
         }
 
         private void AllReadersPause()
@@ -29,21 +19,11 @@ namespace PolyglotMy
                 if (ReaderOriginal.State == SynthesizerState.Speaking)
                 {
                     ReaderOriginal.Pause();
-
                 }
-                /* if (ReaderTranslateOur.State == SynthesizerState.Speaking)
-                 {
-                     ReaderTranslateOur.Pause();
-
-                 }
-                 if (ReaderTranslate.State == SynthesizerState.Speaking)
-                 {
-                     ReaderTranslate.Pause();
-                 }*/
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + ex.Source, Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Form1.Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -58,38 +38,38 @@ namespace PolyglotMy
         private void AllReadersSpeakAsynk()
         {
             AllReadersLoadVoice();
-            setStopPauseEnabled();
-            
+            setStopPauseEnabled();           
 
             if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
             {
-
                 ReaderOriginal.SpeakAsync(richTextBoxOriginal.Text);
                 ReaderOriginal.Pause();
                 ReaderOriginal.SpeakCompleted += ReaderSpeakCompleted;
-                //ReaderOriginal.SpeakStarted += SpeakStarter;
                 ReaderOriginal.SpeakProgress += SpeakProgresser;
-
             }
 
-            /* if (!string.IsNullOrEmpty(richTextBoxTranslateOur.Text))
-             { 
-
-                 ReaderTranslateOur.SpeakAsync(richTextBoxTranslateOur.Text);
-                 ReaderTranslateOur.Pause();
-                 ReaderTranslateOur.SpeakCompleted += ReaderSpeakCompleted;
-             }*/
             AllReadersLoadSettings();
             AllReadersResume();
 
-            Words = richTextBoxOriginal.Text.Split(' ');
-
-            SentencesTranslate = richTextBoxTranslate.Text.Split(sentenceSymbols);
-            DividerSentecesOriginal();
+            GetRealTextDivideTextByPhrase();
+            DividerAllTexts();
 
             buttonPlay.Enabled = false;
+        }
 
-
+        void ReaderSpeakCompleted(object sender, System.Speech.Synthesis.SpeakCompletedEventArgs e)
+        {
+            try
+            {
+                buttonPlay.Enabled = true;
+                setStopPauseEnabled();
+                (sender as SpeechSynthesizer).SpeakCompleted -= ReaderSpeakCompleted;
+                (sender as SpeechSynthesizer).Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

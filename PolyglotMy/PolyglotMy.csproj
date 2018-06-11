@@ -47,12 +47,17 @@
     <Compile Include="Classes\AllTexts.cs" />
     <Compile Include="Classes\BoxFont.cs" />
     <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\SerializebleDictionary.cs" />
+    <Compile Include="Classes\SettingChange.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\SettingsEqualizer.cs" />
     <Compile Include="Classes\SettingsText.cs" />
     <Compile Include="Classes\TextForBoxes.cs" />
     <Compile Include="Classes\Voice.cs" />
     <Compile Include="Forms\FormStart\AnaliseTextForFormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormStart\LoadSettingsForAllTextBoxesesForFormStart.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormStart\EventForFormStart.cs">
