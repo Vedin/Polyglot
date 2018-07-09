@@ -1,24 +1,11 @@
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\bin\Debug\zSpeech.exe
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\bin\Debug\zSpeech.pdb
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\PolyglotMy.Form1.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\PolyglotMy.FormSettings.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\PolyglotMy.FormSettingsEqualizer.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\PolyglotMy.FormSettingsText.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\zSpeech.Properties.Resources.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\PolyglotMy.csproj.GenerateResource.Cache
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\PolyglotMy.csproj.CoreCompileInputs.cache
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\zSpeech.exe
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\zSpeech.pdb
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\zSpeech\obj\Debug\PolyglotMy.csprojResolveAssemblyReference.cache
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\bin\Debug\zSpeech.exe
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\bin\Debug\zSpeech.pdb
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\PolyglotMy.csprojResolveAssemblyReference.cache
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\PolyglotMy.Form1.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\PolyglotMy.FormSettings.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsEqualizer.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsText.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\zSpeech.Properties.Resources.resources
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\PolyglotMy.csproj.GenerateResource.Cache
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\PolyglotMy.csproj.CoreCompileInputs.cache
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\zSpeech.exe
-C:\Users\Arthur\Downloads\zSpeech\zSpeech - Copy (2)\PolyglotMy\obj\Debug\zSpeech.pdb
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.Form1.resources
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.FormAddText.resources
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsEqualizer.resources
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsText.resources
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.Properties.Resources.resources
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.csproj.GenerateResource.Cache
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.csproj.CoreCompileInputs.cache
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\bin\Debug\PolyglotMy.exe
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\bin\Debug\PolyglotMy.pdb
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.exe
+C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.pdb

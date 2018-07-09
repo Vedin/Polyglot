@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<AllTexts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NameandFile>
+    <item>
+      <key>
+        <string>text.xml</string>
+      </key>
+      <value>
+        <string>My first story</string>
+      </value>
+    </item>
+    <item>
+      <key>
+        <string>c:\Top-Level Folder\Polyglot\textfile\textcj6bm41g8.xml</string>
+      </key>
+      <value>
+        <string>kk</string>
+      </value>
+    </item>
+    <item>
+      <key>
+        <string>c:\Top-Level Folder\Polyglot\textfile\texty6p7yduw3.xml</string>
+      </key>
+      <value>
+        <string>nn</string>
+      </value>
+    </item>
+  </NameandFile>
+</AllTexts>

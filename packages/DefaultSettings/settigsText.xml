@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <SettingsText xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <TextColor>-16777216</TextColor>
-  <BackColor>-8323328</BackColor>
+  <TextColor>-31</TextColor>
+  <BackColor>-1</BackColor>
   <TextFont>
-    <familyName>Arial</familyName>
-    <emSize>12</emSize>
+    <familyName>Microsoft Sans Serif</familyName>
+    <emSize>11.25</emSize>
     <style>Regular</style>
     <unit>Point</unit>
     <gbiCharSet>204</gbiCharSet>

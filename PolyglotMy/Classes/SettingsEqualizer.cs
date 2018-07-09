@@ -5,11 +5,14 @@ namespace PolyglotMy
 {
     public class SettingsEqualizer
     {
-        public int SliderLeft { get; set; }
-        public int SliderRight { get; set; }
-        public int SliderMid { get; set; }
+        public string VoiceName { get; set; }
+
+        public int PauseWords { get; set; }
+        public int PauseSenteces { get; set; }
+
         public int Volume { get; set; }
         public int Speed { get; set; }
+
         public static SettingsEqualizer GetSettings()
         {
             SettingsEqualizer formsett = null;

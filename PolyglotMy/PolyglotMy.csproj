@@ -7,8 +7,8 @@
     <ProjectGuid>{8F981002-421A-4619-8953-48C6A5D3A791}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>zSpeech</RootNamespace>
-    <AssemblyName>zSpeech</AssemblyName>
+    <RootNamespace>PolyglotMy</RootNamespace>
+    <AssemblyName>PolyglotMy</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,22 +44,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AllTexts.cs" />
     <Compile Include="Classes\BoxFont.cs" />
     <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\SerializebleDictionary.cs" />
+    <Compile Include="Classes\SettingChange.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\SettingsEqualizer.cs" />
     <Compile Include="Classes\SettingsText.cs" />
-    <Compile Include="Forms\Form1.cs">
+    <Compile Include="Classes\TextForBoxes.cs" />
+    <Compile Include="Classes\Voice.cs" />
+    <Compile Include="Forms\FormStart\AnaliseTextForFormStart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
+    <Compile Include="Forms\FormStart\LoadSettingsForAllTextBoxesesForFormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormStart\EventForFormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormStart\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormStart\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSettings.cs">
+    <Compile Include="Forms\FormAddText.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSettings.designer.cs">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <Compile Include="Forms\FormAddText.Designer.cs">
+      <DependentUpon>FormAddText.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSettingsEqualizer.cs">
       <SubType>Form</SubType>
@@ -73,10 +87,17 @@
     <Compile Include="Forms\FormSettingsText.Designer.cs">
       <DependentUpon>FormSettingsText.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormStart\LoadSettingsForReaderForFormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormStart\ReadersMethodsForFormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <DependentUpon>Settings.settings</DependentUpon>
@@ -84,11 +105,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Program.cs" />
-    <EmbeddedResource Include="Forms\Form1.resx">
+    <EmbeddedResource Include="Forms\FormStart\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSettings.resx">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormAddText.resx">
+      <DependentUpon>FormAddText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSettingsEqualizer.resx">
       <DependentUpon>FormSettingsEqualizer.cs</DependentUpon>

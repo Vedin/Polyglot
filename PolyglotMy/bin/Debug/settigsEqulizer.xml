@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<SettingsEqualizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SliderLeft>4</SliderLeft>
-  <SliderRight>7</SliderRight>
-  <SliderMid>4</SliderMid>
-  <Volume>0</Volume>
-  <Speed>0</Speed>
+<SettingsEqualizer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <VoiceName>Microsoft Anna</VoiceName>
+  <PauseWords>0</PauseWords>
+  <PauseSenteces>0</PauseSenteces>
+  <Volume>20</Volume>
+  <Speed>-6</Speed>
 </SettingsEqualizer>

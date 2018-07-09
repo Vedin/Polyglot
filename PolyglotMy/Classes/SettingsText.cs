@@ -9,6 +9,7 @@ namespace PolyglotMy
         public int TextColor { get; set; }
         public int BackColor { get; set; }
         public BoxFont TextFont { get; set; }
+
         public static SettingsText GetSettings()
         {
             SettingsText settingstext = null;

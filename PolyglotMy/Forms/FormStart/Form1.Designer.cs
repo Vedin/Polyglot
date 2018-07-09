@@ -28,31 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxOriginal = new System.Windows.Forms.RichTextBox();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.buttonPause = new System.Windows.Forms.Button();
-            this.richTextBoxWordTranslation = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxOriginal = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxLiteralTranslate = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxTranslate = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.відкритиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.зберегтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.додатиТекстДоБібліотекиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.еквалайзерToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonStop = new System.Windows.Forms.Button();
-            this.labelOriginal = new System.Windows.Forms.Label();
             this.labelTranslate = new System.Windows.Forms.Label();
+            this.labelT = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // richTextBoxOriginal
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(32, 74);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(753, 122);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBoxOriginal.Location = new System.Drawing.Point(32, 74);
+            this.richTextBoxOriginal.Name = "richTextBoxOriginal";
+            this.richTextBoxOriginal.Size = new System.Drawing.Size(753, 126);
+            this.richTextBoxOriginal.TabIndex = 0;
+            this.richTextBoxOriginal.Text = "";
+            this.richTextBoxOriginal.TextChanged += new System.EventHandler(this.RichTextBoxTranslate_TextChanged);
             // 
             // buttonPlay
             // 
@@ -75,21 +79,21 @@
             this.buttonPause.UseVisualStyleBackColor = true;
             this.buttonPause.Click += new System.EventHandler(this.buttonPause_Click);
             // 
-            // richTextBoxWordTranslation
+            // richTextBoxLiteralTranslate
             // 
-            this.richTextBoxWordTranslation.Location = new System.Drawing.Point(32, 217);
-            this.richTextBoxWordTranslation.Name = "richTextBoxWordTranslation";
-            this.richTextBoxWordTranslation.Size = new System.Drawing.Size(753, 126);
-            this.richTextBoxWordTranslation.TabIndex = 3;
-            this.richTextBoxWordTranslation.Text = "";
+            this.richTextBoxLiteralTranslate.Location = new System.Drawing.Point(32, 217);
+            this.richTextBoxLiteralTranslate.Name = "richTextBoxLiteralTranslate";
+            this.richTextBoxLiteralTranslate.Size = new System.Drawing.Size(753, 126);
+            this.richTextBoxLiteralTranslate.TabIndex = 3;
+            this.richTextBoxLiteralTranslate.Text = "";
             // 
-            // richTextBoxOriginal
+            // richTextBoxTranslate
             // 
-            this.richTextBoxOriginal.Location = new System.Drawing.Point(32, 364);
-            this.richTextBoxOriginal.Name = "richTextBoxOriginal";
-            this.richTextBoxOriginal.Size = new System.Drawing.Size(753, 108);
-            this.richTextBoxOriginal.TabIndex = 4;
-            this.richTextBoxOriginal.Text = "";
+            this.richTextBoxTranslate.Location = new System.Drawing.Point(32, 364);
+            this.richTextBoxTranslate.Name = "richTextBoxTranslate";
+            this.richTextBoxTranslate.Size = new System.Drawing.Size(753, 126);
+            this.richTextBoxTranslate.TabIndex = 4;
+            this.richTextBoxTranslate.Text = "";
             // 
             // menuStrip1
             // 
@@ -106,7 +110,8 @@
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.відкритиToolStripMenuItem,
-            this.зберегтиToolStripMenuItem});
+            this.зберегтиToolStripMenuItem,
+            this.додатиТекстДоБібліотекиToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -114,16 +119,23 @@
             // відкритиToolStripMenuItem
             // 
             this.відкритиToolStripMenuItem.Name = "відкритиToolStripMenuItem";
-            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.відкритиToolStripMenuItem.Text = "Відкрити";
             this.відкритиToolStripMenuItem.Click += new System.EventHandler(this.відкритиToolStripMenuItem_Click);
             // 
             // зберегтиToolStripMenuItem
             // 
             this.зберегтиToolStripMenuItem.Name = "зберегтиToolStripMenuItem";
-            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.зберегтиToolStripMenuItem.Text = "Зберегти";
             this.зберегтиToolStripMenuItem.Click += new System.EventHandler(this.зберегтиToolStripMenuItem_Click);
+            // 
+            // додатиТекстДоБібліотекиToolStripMenuItem
+            // 
+            this.додатиТекстДоБібліотекиToolStripMenuItem.Name = "додатиТекстДоБібліотекиToolStripMenuItem";
+            this.додатиТекстДоБібліотекиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.додатиТекстДоБібліотекиToolStripMenuItem.Text = "Додати текст до бібліотеки";
+            this.додатиТекстДоБібліотекиToolStripMenuItem.Click += new System.EventHandler(this.AddTextToLibraryToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem
             // 
@@ -139,14 +151,14 @@
             this.еквалайзерToolStripMenuItem.Name = "еквалайзерToolStripMenuItem";
             this.еквалайзерToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.еквалайзерToolStripMenuItem.Text = "Еквалайзер";
-            this.еквалайзерToolStripMenuItem.Click += new System.EventHandler(this.еквалайзерToolStripMenuItem_Click);
+            this.еквалайзерToolStripMenuItem.Click += new System.EventHandler(this.OpenFormSettingsEquilezer);
             // 
             // тектToolStripMenuItem
             // 
             this.тектToolStripMenuItem.Name = "тектToolStripMenuItem";
             this.тектToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.тектToolStripMenuItem.Text = "Тект";
-            this.тектToolStripMenuItem.Click += new System.EventHandler(this.тектToolStripMenuItem_Click);
+            this.тектToolStripMenuItem.Click += new System.EventHandler(this.OpenFormSettingsText);
             // 
             // buttonStop
             // 
@@ -159,41 +171,62 @@
             this.buttonStop.UseVisualStyleBackColor = true;
             this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
             // 
-            // labelOriginal
-            // 
-            this.labelOriginal.AutoSize = true;
-            this.labelOriginal.Location = new System.Drawing.Point(415, 348);
-            this.labelOriginal.Name = "labelOriginal";
-            this.labelOriginal.Size = new System.Drawing.Size(42, 13);
-            this.labelOriginal.TabIndex = 7;
-            this.labelOriginal.Text = "Original";
-            // 
             // labelTranslate
             // 
             this.labelTranslate.AutoSize = true;
-            this.labelTranslate.Location = new System.Drawing.Point(406, 56);
+            this.labelTranslate.Location = new System.Drawing.Point(415, 348);
             this.labelTranslate.Name = "labelTranslate";
             this.labelTranslate.Size = new System.Drawing.Size(51, 13);
-            this.labelTranslate.TabIndex = 8;
+            this.labelTranslate.TabIndex = 7;
             this.labelTranslate.Text = "Translate";
+            // 
+            // labelT
+            // 
+            this.labelT.AutoSize = true;
+            this.labelT.Location = new System.Drawing.Point(406, 56);
+            this.labelT.Name = "labelT";
+            this.labelT.Size = new System.Drawing.Size(42, 13);
+            this.labelT.TabIndex = 8;
+            this.labelT.Text = "Original";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(406, 201);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "LiteralTranslate";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(719, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 10;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 512);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelT);
             this.Controls.Add(this.labelTranslate);
-            this.Controls.Add(this.labelOriginal);
             this.Controls.Add(this.buttonStop);
-            this.Controls.Add(this.richTextBoxOriginal);
-            this.Controls.Add(this.richTextBoxWordTranslation);
+            this.Controls.Add(this.richTextBoxTranslate);
+            this.Controls.Add(this.richTextBoxLiteralTranslate);
             this.Controls.Add(this.buttonPause);
             this.Controls.Add(this.buttonPlay);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.richTextBoxOriginal);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "TextToSpeech";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.Form1_VisibleChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -203,21 +236,24 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxOriginal;
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.Button buttonPause;
-        private System.Windows.Forms.RichTextBox richTextBoxWordTranslation;
-        private System.Windows.Forms.RichTextBox richTextBoxOriginal;
+        private System.Windows.Forms.RichTextBox richTextBoxLiteralTranslate;
+        private System.Windows.Forms.RichTextBox richTextBoxTranslate;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem еквалайзерToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem тектToolStripMenuItem;
         private System.Windows.Forms.Button buttonStop;
-        private System.Windows.Forms.Label labelOriginal;
         private System.Windows.Forms.Label labelTranslate;
+        private System.Windows.Forms.Label labelT;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem додатиТекстДоБібліотекиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
     }
 }
 
