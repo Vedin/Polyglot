@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 using System.Xml.Serialization;
-using System.Windows.Forms;
 
 namespace PolyglotMy
 {
@@ -38,16 +32,9 @@ namespace PolyglotMy
                 fs.Close();
             }
         }
-        public void Save(StreamWriter file_way)
-        {
-
-        }
-        //txtBox #1 Text Settings
         public int forecolor { get; set; }
-       // public FontDialog textfont { get; set;}
         public int backcolor { get; set; }
-       /*По компонентное сохранение шрифта крайний случай 
-        public byte tfGDI { get; set; }
-        public bool tfBold { get; set; }*/
+        public BoxFont TextFont { get; set; }
+
     }
 }

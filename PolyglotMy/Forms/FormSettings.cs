@@ -1,36 +1,33 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-//using System.Drawing.Font;
+
 
 namespace PolyglotMy
 {
     public partial class FormSettings : Form
     {
         Settings _settings = null;
+        SettingsEqualizer _settingsequalizer = null;
+
+        private string typesettings { get; set; }
+        private Form formbefore;
         public FormSettings()
         {            
         }
         
-        public FormSettings(Form1 data = null)
+        public FormSettings(Form data = null)
         {
             InitializeComponent();
             _settings = Settings.GetSettings();
+            _settingsequalizer =new SettingsEqualizer();
             _initControlls();
-            f = data;
+            formbefore = data;          
         }
         private void _initControlls()
         {
-           /* if (_settings.backcolor.Color != null) txtBox.BackColor = _settings.backcolor.Color;
-            if (_settings.forecolor.Color != null) txtBox.ForeColor = _settings.forecolor.Color;
-            if (_settings.textfont.Font != null) txtBox.Font = _settings.textfont.Font;*/
+           //Text
             try
             {
                 txtBox.BackColor = Color.FromArgb(_settings.backcolor);
@@ -42,14 +39,32 @@ namespace PolyglotMy
 
             }
             catch { }
-            /* try
-             {
-                 txtBox.Font = _settings.textfont.Font;
-             }
-             catch { }*/
-            txtBox.Text = " Текст для проверки настроек!"; 
+           // txtBox.Text = " Текст для проверки настроек!";
+            //Equlizer
+            SliderLeft.Maximum = Globals.EqulizerSliderMaxValue;
+            SliderRight.Maximum = Globals.EqulizerSliderMaxValue;
+            SliderMid.Maximum = Globals.EqulizerSliderMaxValue;
+            SliderLeft.Minimum = Globals.EqulizerSliderMinValue;
+            SliderRight.Minimum = Globals.EqulizerSliderMinValue;
+            SliderMid.Minimum = Globals.EqulizerSliderMinValue;
+
+            try
+            {
+                SliderLeft.Value = _settingsequalizer.SliderLeft;
+            }
+            catch { }
+            try
+            {
+                SliderRight.Value = _settingsequalizer.SliderRight;
+            }
+            catch { }
+            try
+            {
+                SliderMid.Value = _settingsequalizer.SliderMid;
+            }
+            catch { }
         }
-        private Form1 f;
+
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -68,8 +83,9 @@ namespace PolyglotMy
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
+           
+            formbefore.Show();
             saved_inf();
-            f.Show();
             this.Close();
         }
 
@@ -92,7 +108,11 @@ namespace PolyglotMy
             c = txtBox.ForeColor;
             _settings.forecolor = c.ToArgb();
            // _settings.textfont.Font = txtBox.Font;
-            _settings.Save();        
+            _settings.Save();
+            _settingsequalizer.SliderLeft = SliderLeft.Value;
+            _settingsequalizer.SliderMid = SliderMid.Value;
+            _settingsequalizer.SliderRight = SliderRight.Value;
+            _settingsequalizer.Save();      
         }
         private void downl_inf()
         {
@@ -156,10 +176,21 @@ namespace PolyglotMy
 
         private void FormSettings_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            f.Show();
+            formbefore.Show();
         }
 
-        
+        private void button3_Click(object sender, EventArgs e)//MenuButtonText
+        {
+            gBText.Show();
+            gBEqulizer.Hide();
+            typesettings = "Text";
+        }
 
+        private void button4_Click(object sender, EventArgs e)//MenuBuutonEqulizer
+        {
+            gBEqulizer.Show();
+            gBText.Hide();
+            typesettings = "Equlixer";     
+        }
     }
 }

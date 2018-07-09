@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<SettingsText xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TextColor>0</TextColor>
+  <BackColor>-8323328</BackColor>
+  <TextFont>
+    <familyName>MS Reference Specialty</familyName>
+    <emSize>8.25</emSize>
+    <style>Bold Italic</style>
+    <unit>Point</unit>
+    <gbiCharSet>2</gbiCharSet>
+    <gbiVerticalFont>false</gbiVerticalFont>
+  </TextFont>
+</SettingsText>
