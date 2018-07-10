@@ -15,6 +15,7 @@ namespace PolyglotMy
         public static AllTexts allTexts = AllTexts.GetAllTexts();
         #region Private members
 
+        List<Voice> Voices = new List<Voice>();
         //Ридер бокса
         private SpeechSynthesizer ReaderOriginal = new SpeechSynthesizer();//Ридер оригинала
 
@@ -36,8 +37,7 @@ namespace PolyglotMy
 
         public Form1()
         {
-            InitializeComponent();       
-            List<Voice> Voices = new List<Voice>();
+            InitializeComponent();                  
             ReaderOriginal.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));    
         }
 

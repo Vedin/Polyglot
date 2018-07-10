@@ -9,3 +9,15 @@ C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\bin\Debu
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\bin\Debug\PolyglotMy.pdb
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.exe
 C:\Users\Arthur\source\GitHub\Military\Polyglot -LastVersion\PolyglotMy\obj\Debug\PolyglotMy.pdb
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\bin\Debug\PolyglotMy.exe
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\bin\Debug\PolyglotMy.pdb
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.csprojResolveAssemblyReference.cache
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.Form1.resources
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.FormAddText.resources
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsEqualizer.resources
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.FormSettingsText.resources
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.Properties.Resources.resources
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.csproj.GenerateResource.Cache
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.csproj.CoreCompileInputs.cache
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.exe
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.pdb
