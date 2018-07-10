@@ -103,9 +103,10 @@ namespace PolyglotMy
                 indexCurrentSentence++;
                 if(Pause) Thread.Sleep(_settingsEqualizer.PauseSenteces);
             }
-            if (indexOriginalCurentWord > lengthOriginalPhrasesBeforeInWords + prasesOriginalLengthInWords[indexCurrentSentence])
-            {
-                lengthOriginalPhrasesBeforeInWords += prasesOriginalLengthInWords[indexCurrentSentence];
+
+            if (indexOriginalCurentWord >= lengthOriginalPhrasesBeforeInWords + prasesOriginalLengthInWords[indexCurrentPrase])
+            {               
+                lengthOriginalPhrasesBeforeInWords += prasesOriginalLengthInWords[indexCurrentPrase];
                 lengthOriginalPrasesBefore += praseOriginal[indexCurrentPrase].Length;
                 lengthLiteralTranslatePrasesBefore += praseLiteralTranslate[indexCurrentPrase].Length;
 
@@ -118,16 +119,7 @@ namespace PolyglotMy
             lengthSentenceOriginalWordsBefore += wordsOriginal[indexOriginalCurentWord].Length + 1;
             indexOriginalCurentWord++;
 
-        }
-            /*
-             if (lengthOriginalWordsBefore > lengthOriginalPrasesBefore/* + praseOriginal[indexCurrentPrase].Length*/
-           /* {
-                lengthOriginalPrasesBefore += praseOriginal[indexCurrentPrase].Length;
-                lengthLiteralTranslatePrasesBefore += praseLiteralTranslate[indexCurrentPrase].Length;
-
-                indexCurrentPrase++;
-            }
-            */
+        }           
 
 
         private void DefaultFieldsForSelectionText()
@@ -136,6 +128,8 @@ namespace PolyglotMy
             indexOriginalCurentWord = 0;
             lengthSentenceOriginalWordsBefore = 0;
             lengthSentenceOriginalBeforeInWords = 0;
+            lengthOriginalPrasesBefore = 0;
+            lengthOriginalPhrasesBeforeInWords = 0;
 
             //анулирование параметров для вделения предложений в Переводе(Traslate)
             indexCurrentSentence = 0;
@@ -143,7 +137,7 @@ namespace PolyglotMy
 
             //анулирование для дословного перевода(Literal Translate)
             indexCurrentPrase = 0;
-            lengthOriginalPrasesBefore = 0;
+
             lengthLiteralTranslatePrasesBefore = 0;
             
             wordsOriginal = null;

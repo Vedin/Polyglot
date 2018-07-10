@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            this.Load += Form1_Load;
             // 
             // richTextBoxOriginal
             // 
