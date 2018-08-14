@@ -34,13 +34,15 @@ namespace PolyglotMy
         
         public string Save()
         {
-            string folderName = @"c:\Top-Level Folder\Polyglot";
-            string pathString = System.IO.Path.Combine(folderName, "textfile");
+            string folderName = Directory.GetCurrentDirectory();
+            string pathString = Path.Combine(folderName, "textfile");
+            if(!Directory.Exists(pathString))
+            {
+                Directory.CreateDirectory(pathString);
+            }           
+            string filename = GetNewFileName();
 
-            System.IO.Directory.CreateDirectory(pathString);
-            string filename =GetNewFileName();
-
-            filename = System.IO.Path.Combine(pathString, filename);
+            filename = Path.Combine(pathString, filename);
 
             if (File.Exists(filename)) File.Delete(filename);
             using (FileStream fs = new FileStream(filename, FileMode.Create))
