@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<TextForBoxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Original>The Parties ###|### to this ###|### Treaty ###|### reaffirm ###|### their faith ###|### in the purposes ###|### and principles ###|### " +
+                "of the Charter ###|### of the United Nations ###|###and their desire ###|###to live in peace###|### with all peoples###|### and all governments.###|###" +
+                "\nThey are###|### determined to safeguard ###|###the freedom,###|### common heritage ###|###and civilisation of their peoples,###|### founded on" +
+                " the principles of democracy, individual liberty and the rule of law.</Original>
+  <Translate>"Сторони цей Договір знову підтверджувати їх віра в цілі та принципи Хартія " +
+                "Об’єднаний Нації та їх бажання жити у мир з усі народи та усі уряди." +
+                "\nВони є визначений охороняти свободу, спільний спадщина та цивілізація їх народи," +
+                " заснований на принципи демократія, індивідуальний свобода та правило закон.";</Translate>
+  <LiteralTranslate>"Сторони ###|### цей###|### Договір ###|### знову  підтверджувати ###|### їх віра ###|### в цілі ###|### та принципи###|### Хартія ###|### " +
+                "Об’єднаний Нації ###|###та їх бажання###|### жити у мир###|### з усі народи###|### та усі уряди.###|###" +
+                "\nВони є ###|###визначений охороняти ###|###свободу, ###|###спільний спадщина ###|###та цивілізація їх народи,###|###" +
+                " заснований на принципи демократія, індивідуальний свобода та правило закон.";</LiteralTranslate>
+  <NameText>Debug</NameText>
+</TextForBoxes>

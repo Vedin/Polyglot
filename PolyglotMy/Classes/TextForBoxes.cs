@@ -10,7 +10,7 @@ namespace PolyglotMy
 
         public string Original { get; set; }
         public string Translate { get; set; }
-        public string TranslateOur { get; set; }
+        public string LiteralTranslate { get; set; }
         public string NameText { get; set; }
 
         
@@ -71,7 +71,7 @@ namespace PolyglotMy
             do
             {
                 s = GetRandomString();
-            }while (Form1.allTexts.NameandFile.ContainsKey(s));
+            }while (Form1.allTexts.ContainsKey(s));
             return s;
         }
 

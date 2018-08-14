@@ -52,6 +52,7 @@
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\SettingsEqualizer.cs" />
     <Compile Include="Classes\SettingsText.cs" />
+    <Compile Include="Classes\Text.cs" />
     <Compile Include="Classes\TextForBoxes.cs" />
     <Compile Include="Classes\Voice.cs" />
     <Compile Include="Forms\FormStart\AnaliseTextForFormStart.cs">

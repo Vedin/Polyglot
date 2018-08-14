@@ -46,9 +46,9 @@
             this.labelT = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.cmbTextes = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            this.Load += Form1_Load;
             // 
             // richTextBoxOriginal
             // 
@@ -207,11 +207,22 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 10;
             // 
+            // cmbTextes
+            // 
+            this.cmbTextes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTextes.FormattingEnabled = true;
+            this.cmbTextes.Location = new System.Drawing.Point(304, 19);
+            this.cmbTextes.Name = "cmbTextes";
+            this.cmbTextes.Size = new System.Drawing.Size(481, 21);
+            this.cmbTextes.TabIndex = 11;
+            this.cmbTextes.SelectedIndexChanged += new System.EventHandler(this.cmbTextes_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 512);
+            this.Controls.Add(this.cmbTextes);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelT);
@@ -227,6 +238,7 @@
             this.Name = "Form1";
             this.Text = "TextToSpeech";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.VisibleChanged += new System.EventHandler(this.Form1_VisibleChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -255,6 +267,7 @@
         private System.Windows.Forms.ToolStripMenuItem додатиТекстДоБібліотекиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cmbTextes;
     }
 }
 

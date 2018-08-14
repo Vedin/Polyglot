@@ -38,7 +38,23 @@ namespace PolyglotMy
         public Form1()
         {
             InitializeComponent();                  
-            ReaderOriginal.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));    
+            ReaderOriginal.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
+            allTexts = AllTexts.GetAllTexts();
+            LoadComboBox();
+        }
+
+        private void LoadComboBox()
+        {
+            List<Text> list = new List<Text>();
+            foreach(var item in allTexts.NameandFile.ToList())
+            {
+                list.Add(new Text(item.Value, item.Key));
+            }
+
+
+            cmbTextes.DataSource = list;
+            cmbTextes.ValueMember = "File";
+            cmbTextes.DisplayMember = "Name";
         }
 
         #region Menu File
@@ -226,6 +242,9 @@ namespace PolyglotMy
             allTexts.Save();            
         }
 
-
+        private void cmbTextes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoaderSettiingsForAllTextBox();
+        }
     }
 }

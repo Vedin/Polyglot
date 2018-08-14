@@ -83,12 +83,12 @@ namespace PolyglotMy
         {
             text.Original = richTextBoxOriginal.Text;
             text.Translate = richTextBoxTranslate.Text;
-            text.TranslateOur = richTextBoxLiteralTranslate.Text;
+            text.LiteralTranslate = richTextBoxLiteralTranslate.Text;
             text.NameText = richTextBoxNameText.Text;
 
             string filename = text.Save();
 
-            Form1.allTexts.NameandFile.Add(filename, text.NameText);
+            Form1.allTexts.Add(filename, text.NameText);
         }
 
         private void CleanBoxes()

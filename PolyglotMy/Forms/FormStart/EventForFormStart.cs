@@ -58,6 +58,7 @@ namespace PolyglotMy
                 LoaderSettiingsForAllTextBox();
             }
             settings = SettingsChanged.None;
+            LoadComboBox();
         }
     }
 }

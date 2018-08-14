@@ -174,10 +174,10 @@ namespace PolyglotMy
             for (int i = 0; i < text.Length; i++)
             {                
                 prases = text[i].Split(splitPrases, StringSplitOptions.RemoveEmptyEntries);
-                textForBoxes[i] = "";
+                textForBoxesChanged[i] = "";
                 foreach(string str in prases)
                 {
-                    textForBoxes[i] += str;
+                    textForBoxesChanged[i] += str;
                 }
                 switch (i)
                 {

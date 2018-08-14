@@ -48,7 +48,16 @@ namespace PolyglotMy
                 fs.Close();
             }
         }
-        
+        public void Add(string Key, string Value)
+        {
+            NameandFile.Add(Key, Value);
+        }
+
+        public bool ContainsKey(string Key)
+        {
+            return NameandFile.ContainsKey(Key);
+        }
+
     }
 }
 
