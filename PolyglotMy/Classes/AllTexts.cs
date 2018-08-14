@@ -9,11 +9,9 @@ namespace PolyglotMy
     public class AllTexts
     {
         public XmlSerializableDictionary<string,string> NameandFile{ get; set; }
-        
-
+       
         public static AllTexts GetAllTexts()
-        {
-            
+        {            
             AllTexts formsett = null;
             string filename = Globals.TextForBoxes.AllTexts.FileName;
         if (File.Exists(filename))
@@ -31,13 +29,11 @@ namespace PolyglotMy
                 catch(Exception e)
                 {
                   
-                }              
-               
+                }                             
         }
         
             formsett = new AllTexts();
             formsett.NameandFile = new XmlSerializableDictionary<string, string>();
-            formsett.NameandFile.Add("text.xml", "My first story");
             return formsett;
         }
         public void Save()

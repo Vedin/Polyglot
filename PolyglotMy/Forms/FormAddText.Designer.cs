@@ -33,7 +33,7 @@
             this.labelOriginal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBoxOriginal = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxTranslateOur = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxLiteralTranslate = new System.Windows.Forms.RichTextBox();
             this.richTextBoxTranslate = new System.Windows.Forms.RichTextBox();
             this.richTextBoxNameText = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,9 +74,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(377, 217);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 20;
-            this.label1.Text = "TranslateOur";
+            this.label1.Text = "LiteralTranslate";
             // 
             // richTextBoxOriginal
             // 
@@ -86,13 +86,13 @@
             this.richTextBoxOriginal.TabIndex = 15;
             this.richTextBoxOriginal.Text = "";
             // 
-            // richTextBoxTranslateOur
+            // richTextBoxLiteralTranslate
             // 
-            this.richTextBoxTranslateOur.Location = new System.Drawing.Point(3, 233);
-            this.richTextBoxTranslateOur.Name = "richTextBoxTranslateOur";
-            this.richTextBoxTranslateOur.Size = new System.Drawing.Size(753, 126);
-            this.richTextBoxTranslateOur.TabIndex = 14;
-            this.richTextBoxTranslateOur.Text = "";
+            this.richTextBoxLiteralTranslate.Location = new System.Drawing.Point(3, 233);
+            this.richTextBoxLiteralTranslate.Name = "richTextBoxLiteralTranslate";
+            this.richTextBoxLiteralTranslate.Size = new System.Drawing.Size(753, 126);
+            this.richTextBoxLiteralTranslate.TabIndex = 14;
+            this.richTextBoxLiteralTranslate.Text = "";
             // 
             // richTextBoxTranslate
             // 
@@ -162,7 +162,7 @@
             this.Controls.Add(this.labelOriginal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBoxOriginal);
-            this.Controls.Add(this.richTextBoxTranslateOur);
+            this.Controls.Add(this.richTextBoxLiteralTranslate);
             this.Controls.Add(this.richTextBoxTranslate);
             this.Name = "FormAddText";
             this.Text = "FormAddText";
@@ -180,7 +180,7 @@
         private System.Windows.Forms.Label labelOriginal;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBoxOriginal;
-        private System.Windows.Forms.RichTextBox richTextBoxTranslateOur;
+        private System.Windows.Forms.RichTextBox richTextBoxLiteralTranslate;
         private System.Windows.Forms.RichTextBox richTextBoxTranslate;
         private System.Windows.Forms.RichTextBox richTextBoxNameText;
         private System.Windows.Forms.Label label3;

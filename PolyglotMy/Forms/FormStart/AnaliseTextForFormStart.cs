@@ -10,11 +10,11 @@ namespace PolyglotMy
 {
     partial class Form1 : Form
     {
-       
+
         //Символи для анализа и деления текста 
-        private readonly char[] splitSentenceSymbols = { '.', '?', '!' };
-        private readonly char[] splitWordsSymbols = { ' ', '\n' ,'\t'};
-        private readonly string[] splitPrases = new string[] { "###|###" };
+        public static readonly char[] splitSentenceSymbols = { '.', '?', '!' };
+        public static readonly char[] splitWordsSymbols = { ' ', '\n' ,'\t'};
+        public static readonly string[] splitPrases = new string[] { "###|###" };
         private Regex regexReadWord = new Regex(@"[0-9A-Za-z]");
 
         //Индекси для выделений 

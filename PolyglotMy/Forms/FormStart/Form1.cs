@@ -223,8 +223,7 @@ namespace PolyglotMy
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            allTexts.Save();
-            
+            allTexts.Save();            
         }
 
 
