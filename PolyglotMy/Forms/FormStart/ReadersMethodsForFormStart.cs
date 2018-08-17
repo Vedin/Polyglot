@@ -9,7 +9,7 @@ namespace PolyglotMy
         private void AllReadersDispose()
         {
             ReaderOriginal.Dispose();
-            ReaderOriginal = new SpeechSynthesizer();           
+            ReaderOriginal = new SpeechSynthesizer();
         }
 
         private void AllReadersPause()
@@ -38,7 +38,7 @@ namespace PolyglotMy
         private void AllReadersSpeakAsynk()
         {
             AllReadersLoadVoice();
-            setStopPauseEnabled();           
+            setStopPauseEnabled();
 
             if (!string.IsNullOrEmpty(richTextBoxOriginal.Text))
             {
