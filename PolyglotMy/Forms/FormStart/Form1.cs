@@ -19,6 +19,7 @@ namespace PolyglotMy
         //Ридер бокса
         private SpeechSynthesizer ReaderOriginal = new SpeechSynthesizer();//Ридер оригинала
 
+        private int countChangesTextesList = 0;
         private object _Lock = new object();
        
         //Для отслеживания изменения настроек
@@ -41,6 +42,7 @@ namespace PolyglotMy
             ReaderOriginal.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
             allTexts = AllTexts.GetAllTexts();
             LoadComboBox();
+            cmbTextes.SelectedIndex = 0;
         }
 
         private void LoadComboBox()
@@ -244,7 +246,21 @@ namespace PolyglotMy
 
         private void cmbTextes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoaderSettiingsForAllTextBox();
+            
+            if (countChangesTextesList >= 2)
+            {
+                LoaderSettiingsForAllTextBox();
+            }
+            else
+            {
+                countChangesTextesList++;
+            }
+            
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+
         }
     }
 }
