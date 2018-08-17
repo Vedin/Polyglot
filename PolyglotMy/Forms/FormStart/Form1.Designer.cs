@@ -35,8 +35,6 @@
             this.richTextBoxTranslate = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.відкритиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.зберегтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.додатиТекстДоБібліотекиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.еквалайзерToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,26 +108,10 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.відкритиToolStripMenuItem,
-            this.зберегтиToolStripMenuItem,
             this.додатиТекстДоБібліотекиToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
-            // 
-            // відкритиToolStripMenuItem
-            // 
-            this.відкритиToolStripMenuItem.Name = "відкритиToolStripMenuItem";
-            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.відкритиToolStripMenuItem.Text = "Відкрити";
-            this.відкритиToolStripMenuItem.Click += new System.EventHandler(this.відкритиToolStripMenuItem_Click);
-            // 
-            // зберегтиToolStripMenuItem
-            // 
-            this.зберегтиToolStripMenuItem.Name = "зберегтиToolStripMenuItem";
-            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.зберегтиToolStripMenuItem.Text = "Зберегти";
-            this.зберегтиToolStripMenuItem.Click += new System.EventHandler(this.зберегтиToolStripMenuItem_Click);
             // 
             // додатиТекстДоБібліотекиToolStripMenuItem
             // 
@@ -239,6 +221,7 @@
             this.Text = "TextToSpeech";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.VisibleChanged += new System.EventHandler(this.Form1_VisibleChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -265,8 +248,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem додатиТекстДоБібліотекиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem відкритиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem зберегтиToolStripMenuItem;
         private System.Windows.Forms.ComboBox cmbTextes;
     }
 }
