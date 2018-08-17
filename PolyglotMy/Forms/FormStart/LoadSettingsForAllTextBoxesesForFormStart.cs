@@ -30,6 +30,7 @@ namespace PolyglotMy
                 _settingsText = SettingsText.GetSettings(); //Десериализация
                 try
                 {
+                    LoadTextToTextBoxes();
                     richTextBoxTranslate.SelectAll();
                     richTextBoxOriginal.SelectAll();
                     richTextBoxLiteralTranslate.SelectAll();
@@ -37,11 +38,12 @@ namespace PolyglotMy
                     TextBoxLoadSettings(richTextBoxTranslate);
                     TextBoxLoadSettings(richTextBoxOriginal);
                     TextBoxLoadSettings(richTextBoxLiteralTranslate);
-                    LoadTextToTextBoxes();
+                    
 
                     richTextBoxTranslate.Select(0, 0);
                     richTextBoxOriginal.Select(0, 0);
                     richTextBoxLiteralTranslate.Select(0, 0);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -55,7 +57,7 @@ namespace PolyglotMy
         }
         private void LoadTextToTextBoxes()
         {
-            TextForBoxes textForBoxes = TextForBoxes.GetTexts((string)cmbTextes.SelectedValue);
+            TextForBoxes textForBoxes = TextForBoxes.GetTexts(cmbTextes.SelectedValue.ToString());
             text[0] = textForBoxes.Original;
             text[1] = textForBoxes.LiteralTranslate;
             text[2] = textForBoxes.Translate;
