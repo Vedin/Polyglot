@@ -62,9 +62,8 @@ namespace PolyglotMy
             try
             {
                 buttonPlay.Enabled = true;
-                setStopPauseEnabled();
                 (sender as SpeechSynthesizer).SpeakCompleted -= ReaderSpeakCompleted;
-                (sender as SpeechSynthesizer).Dispose();
+                setStop();
             }
             catch (Exception ex)
             {
