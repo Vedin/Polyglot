@@ -21,3 +21,4 @@ C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.csproj
 C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.csproj.CoreCompileInputs.cache
 C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.exe
 C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.pdb
+C:\Users\Arthur\Documents\GitHub\Polyglot\PolyglotMy\obj\Debug\PolyglotMy.FormFormatText.resources

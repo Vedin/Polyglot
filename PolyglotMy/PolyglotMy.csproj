@@ -55,6 +55,12 @@
     <Compile Include="Classes\Text.cs" />
     <Compile Include="Classes\TextForBoxes.cs" />
     <Compile Include="Classes\Voice.cs" />
+    <Compile Include="Forms\FormFormatText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFormatText.Designer.cs">
+      <DependentUpon>FormFormatText.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormStart\AnaliseTextForFormStart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Program.cs" />
+    <EmbeddedResource Include="Forms\FormFormatText.resx">
+      <DependentUpon>FormFormatText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormStart\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

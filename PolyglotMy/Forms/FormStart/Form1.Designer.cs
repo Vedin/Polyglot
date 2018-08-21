@@ -36,6 +36,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.додатиТекстДоБібліотекиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.редагуватиТекстиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.еквалайзерToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,7 +109,8 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.додатиТекстДоБібліотекиToolStripMenuItem});
+            this.додатиТекстДоБібліотекиToolStripMenuItem,
+            this.редагуватиТекстиToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -119,6 +121,13 @@
             this.додатиТекстДоБібліотекиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.додатиТекстДоБібліотекиToolStripMenuItem.Text = "Додати текст до бібліотеки";
             this.додатиТекстДоБібліотекиToolStripMenuItem.Click += new System.EventHandler(this.AddTextToLibraryToolStripMenuItem_Click);
+            // 
+            // редагуватиТекстиToolStripMenuItem
+            // 
+            this.редагуватиТекстиToolStripMenuItem.Name = "редагуватиТекстиToolStripMenuItem";
+            this.редагуватиТекстиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.редагуватиТекстиToolStripMenuItem.Text = "Редагувати тексти";
+            this.редагуватиТекстиToolStripMenuItem.Click += new System.EventHandler(this.редагуватиТекстиToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem
             // 
@@ -249,6 +258,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem додатиТекстДоБібліотекиToolStripMenuItem;
         private System.Windows.Forms.ComboBox cmbTextes;
+        private System.Windows.Forms.ToolStripMenuItem редагуватиТекстиToolStripMenuItem;
     }
 }
 

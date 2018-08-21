@@ -54,6 +54,19 @@ namespace PolyglotMy
             return filename;
         }
 
+        public string Save(string Name)
+        {
+            string filename = Name;
+            if (File.Exists(filename)) File.Delete(filename);
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            {
+                XmlSerializer xser = new XmlSerializer(typeof(TextForBoxes));
+                xser.Serialize(fs, this);
+                fs.Close();
+            }
+            return filename;
+        }
+
         private static string GetRandomString(int pwdLength = 9)
         {
             char[] letters = Globals.TextForBoxes.AllowedCharacters.ToCharArray();
@@ -75,6 +88,32 @@ namespace PolyglotMy
             return s;
         }
 
+        public TextForBoxes GetRealTextDivideTextByPhrase()
+        {
+            string[] text = new string[3]; 
+            text[0] = Original;
+            text[1] = LiteralTranslate;
+            text[2] = Translate;
+            string[] prases = null;
+            string[] textForBoxesChanged = new string[3];
 
+            
+            for (int i = 0; i < text.Length; i++)
+            {
+                prases = text[i].Split(Form1.splitPrases, StringSplitOptions.RemoveEmptyEntries);
+                textForBoxesChanged[i] = "";
+                foreach (string str in prases)
+                {
+                    textForBoxesChanged[i] += str;
+                }
+                
+            }
+            var TextNew = new TextForBoxes();
+
+            TextNew.Original = textForBoxesChanged[0];
+            TextNew.LiteralTranslate = textForBoxesChanged[1];
+            TextNew.Translate = textForBoxesChanged[2];
+            return TextNew;
+        }
     }
 }

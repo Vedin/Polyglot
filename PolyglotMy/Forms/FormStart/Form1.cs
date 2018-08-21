@@ -262,5 +262,13 @@ namespace PolyglotMy
         {
 
         }
+
+        private void редагуватиТекстиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFormatText formAddText = new FormFormatText(this);
+            formAddText.Show();
+            this.Hide();
+            settings = SettingsChanged.None;
+        }
     }
 }
