@@ -50,7 +50,7 @@ namespace PolyglotMy
 
             richTextBoxLiteralTranslate.Text = TextBoxes.LiteralTranslate;
 
-            richTextBoxNameText.Text = cmbTextes.SelectedText;
+            richTextBoxNameText.Text = Form1.allTexts.NameandFile[cmbTextes.SelectedValue.ToString()];
 
             index = cmbTextes.SelectedIndex;
         }
@@ -206,6 +206,11 @@ namespace PolyglotMy
             FormAddText formAddText = new FormAddText(this);
             formAddText.Show();
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ChangeText();
         }
     }
 }
