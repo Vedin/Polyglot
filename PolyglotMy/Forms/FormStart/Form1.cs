@@ -9,17 +9,19 @@ using System.Text.RegularExpressions;
 using System.Threading;
 namespace PolyglotMy
 {
-     
+
     partial class Form1 : Form
     {
         public static AllTexts allTexts = AllTexts.GetAllTexts();
         #region Private members
 
+        List<Voice> Voices = new List<Voice>();
         //Ридер бокса
         private SpeechSynthesizer ReaderOriginal = new SpeechSynthesizer();//Ридер оригинала
 
+        private int countChangesTextesList = 0;
         private object _Lock = new object();
-       
+
         //Для отслеживания изменения настроек
         private SettingsChanged settings = SettingsChanged.None;
 
@@ -28,7 +30,7 @@ namespace PolyglotMy
         SettingsText _settingsText = null;
 
         #endregion
-      
+
         public static string Massage(Exception ex)
         {
             return ex.Message + ex.Source;
@@ -36,9 +38,25 @@ namespace PolyglotMy
 
         public Form1()
         {
-            InitializeComponent();       
-            List<Voice> Voices = new List<Voice>();
-            ReaderOriginal.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));    
+            InitializeComponent();
+            ReaderOriginal.GetInstalledVoices().ToList().ForEach(v => Voices.Add(new Voice() { Name = v.VoiceInfo.Name, InstalledVoice = v }));
+            allTexts = AllTexts.GetAllTexts();
+            LoadComboBox();
+            cmbTextes.SelectedIndex = 0;
+        }
+
+        private void LoadComboBox()
+        {
+            List<Text> list = new List<Text>();
+            foreach (var item in allTexts.NameandFile.ToList())
+            {
+                list.Add(new Text(item.Value, item.Key));
+            }
+
+
+            cmbTextes.DataSource = list;
+            cmbTextes.ValueMember = "File";
+            cmbTextes.DisplayMember = "Name";
         }
 
         #region Menu File
@@ -76,15 +94,15 @@ namespace PolyglotMy
 
         #endregion
 
-        
+
         #region Buttons for Reader
-        
+
         private void buttonPlay_Click(object sender, EventArgs e)
-        {           
+        {
             try
             {
                 DefaultFieldsForSelectionText();
-                AllReadersSpeakAsynk();                
+                AllReadersSpeakAsynk();
             }
             catch (Exception ex)
             {
@@ -111,7 +129,7 @@ namespace PolyglotMy
                 MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
+
         private void buttonStop_Click(object sender, EventArgs e)
         {
             setStop();
@@ -136,7 +154,7 @@ namespace PolyglotMy
             catch (Exception ex)
             {
                 MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+            }
         }
         //запуск формы для настроек эквалайзера
         private void OpenFormSettingsEquilezer(object sender, EventArgs e)
@@ -162,7 +180,7 @@ namespace PolyglotMy
         //запускаеться при нажатии button Play
         private void setStopPauseEnabled()
         {
-           
+
             if (!string.IsNullOrEmpty(richTextBoxTranslate.Text)
                 || !string.IsNullOrEmpty(richTextBoxLiteralTranslate.Text)
                 || !string.IsNullOrEmpty(richTextBoxOriginal.Text))
@@ -175,7 +193,7 @@ namespace PolyglotMy
                 buttonPause.Enabled = false;
                 buttonStop.Enabled = false;
             }
-        }     
+        }
 
         private void setStop()
         {
@@ -200,7 +218,7 @@ namespace PolyglotMy
             const string pattern = @"[aeyuio]";
             var regex = new Regex(pattern);
 
-            string s = "";          
+            string s = "";
             int words = 0;
             int sentences = 0;
             int syllables = 0;
@@ -212,10 +230,10 @@ namespace PolyglotMy
             label2.Text = Math.Round(FlaschScore(words, sentences, syllables)).ToString();
         }
 
-       
+
         private void AddTextToLibraryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAddText formAddText = new FormAddText(this);          
+            FormAddText formAddText = new FormAddText(this);
             formAddText.Show();
             this.Hide();
             settings = SettingsChanged.None;
@@ -224,9 +242,33 @@ namespace PolyglotMy
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             allTexts.Save();
-            
         }
 
+        private void cmbTextes_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+            if (countChangesTextesList >= 2)
+            {
+                LoaderSettiingsForAllTextBox();
+            }
+            else
+            {
+                countChangesTextesList++;
+            }
+
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void редагуватиТекстиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFormatText formAddText = new FormFormatText(this);
+            formAddText.Show();
+            this.Hide();
+            settings = SettingsChanged.None;
+        }
     }
 }

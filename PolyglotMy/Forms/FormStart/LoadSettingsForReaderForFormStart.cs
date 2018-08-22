@@ -16,8 +16,16 @@ namespace PolyglotMy
             }
             catch (Exception ex)
             {
-                ReaderOriginal.SelectVoice(Globals.SpeechSentizerVoice);
-                MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Voices.Count != 0)
+                {
+                    ReaderOriginal.SelectVoice(Voices[0].Name);
+                    MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    throw new Exception("None instaled voices");
+                }
+
             }
         }
 

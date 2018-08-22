@@ -10,11 +10,11 @@ namespace PolyglotMy
 {
     partial class Form1 : Form
     {
-       
+
         //Символи для анализа и деления текста 
-        private readonly char[] splitSentenceSymbols = { '.', '?', '!' };
-        private readonly char[] splitWordsSymbols = { ' ', '\n' ,'\t'};
-        private readonly string[] splitPrases = new string[] { "###|###" };
+        public static readonly char[] splitSentenceSymbols = { '.', '?', '!' };
+        public static readonly char[] splitWordsSymbols = { ' ', '\n' ,'\t'};
+        public static readonly string[] splitPrases = new string[] { "###|###" };
         private Regex regexReadWord = new Regex(@"[0-9A-Za-z]");
 
         //Индекси для выделений 
@@ -103,9 +103,10 @@ namespace PolyglotMy
                 indexCurrentSentence++;
                 if(Pause) Thread.Sleep(_settingsEqualizer.PauseSenteces);
             }
-            if (indexOriginalCurentWord > lengthOriginalPhrasesBeforeInWords + prasesOriginalLengthInWords[indexCurrentSentence])
-            {
-                lengthOriginalPhrasesBeforeInWords += prasesOriginalLengthInWords[indexCurrentSentence];
+
+            if (indexOriginalCurentWord >= lengthOriginalPhrasesBeforeInWords + prasesOriginalLengthInWords[indexCurrentPrase])
+            {               
+                lengthOriginalPhrasesBeforeInWords += prasesOriginalLengthInWords[indexCurrentPrase];
                 lengthOriginalPrasesBefore += praseOriginal[indexCurrentPrase].Length;
                 lengthLiteralTranslatePrasesBefore += praseLiteralTranslate[indexCurrentPrase].Length;
 
@@ -118,16 +119,7 @@ namespace PolyglotMy
             lengthSentenceOriginalWordsBefore += wordsOriginal[indexOriginalCurentWord].Length + 1;
             indexOriginalCurentWord++;
 
-        }
-            /*
-             if (lengthOriginalWordsBefore > lengthOriginalPrasesBefore/* + praseOriginal[indexCurrentPrase].Length*/
-           /* {
-                lengthOriginalPrasesBefore += praseOriginal[indexCurrentPrase].Length;
-                lengthLiteralTranslatePrasesBefore += praseLiteralTranslate[indexCurrentPrase].Length;
-
-                indexCurrentPrase++;
-            }
-            */
+        }           
 
 
         private void DefaultFieldsForSelectionText()
@@ -136,6 +128,8 @@ namespace PolyglotMy
             indexOriginalCurentWord = 0;
             lengthSentenceOriginalWordsBefore = 0;
             lengthSentenceOriginalBeforeInWords = 0;
+            lengthOriginalPrasesBefore = 0;
+            lengthOriginalPhrasesBeforeInWords = 0;
 
             //анулирование параметров для вделения предложений в Переводе(Traslate)
             indexCurrentSentence = 0;
@@ -143,7 +137,7 @@ namespace PolyglotMy
 
             //анулирование для дословного перевода(Literal Translate)
             indexCurrentPrase = 0;
-            lengthOriginalPrasesBefore = 0;
+
             lengthLiteralTranslatePrasesBefore = 0;
             
             wordsOriginal = null;
@@ -180,10 +174,10 @@ namespace PolyglotMy
             for (int i = 0; i < text.Length; i++)
             {                
                 prases = text[i].Split(splitPrases, StringSplitOptions.RemoveEmptyEntries);
-                textForBoxes[i] = "";
+                textForBoxesChanged[i] = "";
                 foreach(string str in prases)
                 {
-                    textForBoxes[i] += str;
+                    textForBoxesChanged[i] += str;
                 }
                 switch (i)
                 {

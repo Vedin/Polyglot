@@ -15,7 +15,22 @@ namespace PolyglotMy
             try
             {
                 AllReadersLoadVoice();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            try
+            {
                 AllReadersLoadSettings();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
                 LoaderSettiingsForAllTextBox();
             }
             catch (Exception ex)
@@ -28,7 +43,14 @@ namespace PolyglotMy
         {
             if (settings == SettingsChanged.Equlizer)
             {
-                AllReadersLoadVoice();
+                try
+                {
+                    AllReadersLoadVoice();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 AllReadersLoadSettings();
             }
             if (settings == SettingsChanged.Text)
@@ -36,6 +58,7 @@ namespace PolyglotMy
                 LoaderSettiingsForAllTextBox();
             }
             settings = SettingsChanged.None;
+            LoadComboBox();
         }
     }
 }

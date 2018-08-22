@@ -10,7 +10,7 @@ namespace PolyglotMy
 
         public string Original { get; set; }
         public string Translate { get; set; }
-        public string TranslateOur { get; set; }
+        public string LiteralTranslate { get; set; }
         public string NameText { get; set; }
 
         
@@ -34,14 +34,29 @@ namespace PolyglotMy
         
         public string Save()
         {
-            string folderName = @"c:\Top-Level Folder\Polyglot";
-            string pathString = System.IO.Path.Combine(folderName, "textfile");
+            string folderName = Directory.GetCurrentDirectory();
+            string pathString = Path.Combine(folderName, "textfile");
+            if(!Directory.Exists(pathString))
+            {
+                Directory.CreateDirectory(pathString);
+            }           
+            string filename = GetNewFileName();
 
-            System.IO.Directory.CreateDirectory(pathString);
-            string filename =GetNewFileName();
+            filename = Path.Combine(pathString, filename);
 
-            filename = System.IO.Path.Combine(pathString, filename);
+            if (File.Exists(filename)) File.Delete(filename);
+            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            {
+                XmlSerializer xser = new XmlSerializer(typeof(TextForBoxes));
+                xser.Serialize(fs, this);
+                fs.Close();
+            }
+            return filename;
+        }
 
+        public string Save(string Name)
+        {
+            string filename = Name;
             if (File.Exists(filename)) File.Delete(filename);
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
@@ -69,10 +84,36 @@ namespace PolyglotMy
             do
             {
                 s = GetRandomString();
-            }while (Form1.allTexts.NameandFile.ContainsKey(s));
+            }while (Form1.allTexts.ContainsKey(s));
             return s;
         }
 
+        public TextForBoxes GetRealTextDivideTextByPhrase()
+        {
+            string[] text = new string[3]; 
+            text[0] = Original;
+            text[1] = LiteralTranslate;
+            text[2] = Translate;
+            string[] prases = null;
+            string[] textForBoxesChanged = new string[3];
 
+            
+            for (int i = 0; i < text.Length; i++)
+            {
+                prases = text[i].Split(Form1.splitPrases, StringSplitOptions.RemoveEmptyEntries);
+                textForBoxesChanged[i] = "";
+                foreach (string str in prases)
+                {
+                    textForBoxesChanged[i] += str;
+                }
+                
+            }
+            var TextNew = new TextForBoxes();
+
+            TextNew.Original = textForBoxesChanged[0];
+            TextNew.LiteralTranslate = textForBoxesChanged[1];
+            TextNew.Translate = textForBoxesChanged[2];
+            return TextNew;
+        }
     }
 }
