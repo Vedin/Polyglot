@@ -38,10 +38,11 @@
             this.richTextBoxNameText = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gBButtons = new System.Windows.Forms.GroupBox();
-            this.buttonOK = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.cmbTextes = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.gBButtons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,8 +124,9 @@
             // 
             // gBButtons
             // 
+            this.gBButtons.Controls.Add(this.buttonDelete);
             this.gBButtons.Controls.Add(this.button1);
-            this.gBButtons.Controls.Add(this.buttonOK);
+            this.gBButtons.Controls.Add(this.buttonAdd);
             this.gBButtons.Controls.Add(this.buttonCancel);
             this.gBButtons.Location = new System.Drawing.Point(3, 512);
             this.gBButtons.Name = "gBButtons";
@@ -132,19 +134,29 @@
             this.gBButtons.TabIndex = 24;
             this.gBButtons.TabStop = false;
             // 
-            // buttonOK
+            // button1
             // 
-            this.buttonOK.Location = new System.Drawing.Point(234, 11);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 2;
-            this.buttonOK.Text = "Add";
-            this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            this.button1.Location = new System.Drawing.Point(639, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(6, 12);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.TabIndex = 2;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(339, 11);
+            this.buttonCancel.Location = new System.Drawing.Point(530, 12);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 0;
@@ -161,15 +173,15 @@
             this.cmbTextes.Size = new System.Drawing.Size(734, 21);
             this.cmbTextes.TabIndex = 25;
             // 
-            // button1
+            // buttonDelete
             // 
-            this.button1.Location = new System.Drawing.Point(448, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonDelete.Location = new System.Drawing.Point(97, 12);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete.TabIndex = 4;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // FormFormatText
             // 
@@ -208,9 +220,10 @@
         private System.Windows.Forms.RichTextBox richTextBoxNameText;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox gBButtons;
-        private System.Windows.Forms.Button buttonOK;
+        private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.ComboBox cmbTextes;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -27,17 +28,19 @@ namespace PolyglotMy
 
         private void LoadTexts()
         {
+
             List<Text> list = new List<Text>();
             foreach (var item in Form1.allTexts.NameandFile.ToList())
             {
                 list.Add(new Text(item.Value, item.Key));
             }
 
-
+            cmbTextes.SelectedIndexChanged -= cmbTextes_SelectedIndexChanged;
             cmbTextes.DataSource = list;
             cmbTextes.ValueMember = "File";
             cmbTextes.SelectedIndexChanged += cmbTextes_SelectedIndexChanged;
             cmbTextes.DisplayMember = "Name";
+            ChangeText();
         }
         private void ChangeText()
         {
@@ -148,16 +151,9 @@ namespace PolyglotMy
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            try
-            {
-                AnaliseInfo();
-                SaveInfo();
-                CleanBoxes();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(Form1.Massage(ex), Globals.ERR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            FormAddText formAddText = new FormAddText(this);
+            formAddText.Show();
+            this.Hide();
         }
 
         private void SaveInfo()
@@ -211,6 +207,28 @@ namespace PolyglotMy
         private void button1_Click(object sender, EventArgs e)
         {
             ChangeText();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Удалить ?", "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Выводим сообщение о звершении.
+                DeleteInfo();
+                LoadTexts();
+                MessageBox.Show("Удаленно", "TsManager");
+            }
+        }
+
+        private void DeleteInfo()
+        {
+            if (File.Exists(Form1.allTexts.NameandFile[cmbTextes.SelectedValue.ToString()]))
+            {
+                File.Delete(Form1.allTexts.NameandFile[cmbTextes.SelectedValue.ToString()]);
+            }
+            Form1.allTexts.NameandFile.Remove(cmbTextes.SelectedValue.ToString());
         }
     }
 }
